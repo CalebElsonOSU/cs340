@@ -4,7 +4,7 @@
 <table class="pure-table pure-table-bordered" id="ordersWithItems-table">
     <thead>
         <tr>
-            {{#each data.[0]}}
+            {{#each ordersWithItems.[0]}}
             <th>
                 {{@key}}
             </th>
@@ -13,10 +13,10 @@
         </tr>
     </thead>
     <tbody>
-        {{#each data}}
+        {{#each ordersWithItems}}
         <tr>
             <td>{{this.orderID}}</td>
-            <td>{{this.itemID}}</td>
+            <td>{{this.itemName}}</td>
             <td>{{this.itemQuantity}}</td>
             <td>{{toFixed this.itemTotalAmount 4}}</td>
             <td><button onclick="deletePerson({{this.orderID}}, {{this.itemID}})">Delete</button></td>
@@ -33,22 +33,25 @@
     <form class="pure-form" id="add-ordersWithItems-form-ajax">
         <select name="input-orderID" id="input-orderID" required>
             <option value="">Select an orderID</option>
-            {{#each (unique (pluck data "orderID"))}}{{.}}
-            <option value="{{this}}">{{this}}</option>
+            {{!--{{#each (unique (pluck data "orderID"))}}{{.}} --}}
+            {{#each orders}}
+                <option value="{{this.orderID}}">{{this.orderID}}</option>
             {{/each}}
         </select>
-        
-        <label for="input-itemID">itemID: </label>
-        <input type="number" name="input-itemID" id="input-itemID" required>
+
+        <select name="input-itemID" id="input-itemID" onchange="updateTotalAmount()" required>
+            <option value="">Select an item</option>
+            {{!--{{#each (unique (pluck data "orderID"))}}{{.}} --}}
+            {{#each items}}
+                <option value="{{this.itemID}}">{{this.name}}</option>
+            {{/each}}
+        </select>
 
         <label for="input-itemQuantity">itemQuantity: </label>
-        <input type="number" name="input-itemQuantity" id="input-itemQuantity" required>
+        <input type="number" name="input-itemQuantity" id="input-itemQuantity" onkeyup="updateTotalAmount()" required>
 
         <label for="input-itemTotalAmount">itemTotalAmount: </label>
         <input type="number" min="0.01" step="0.01" name="input-itemTotalAmount" id="input-itemTotalAmount" required>
-
-        <label for="input-homeworld">Homeworld: </label>
-
         <input type="submit">
     </form>
 </fieldset>
@@ -79,3 +82,27 @@
 
 {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
 <script src="./js/ordersWithItems.js"></script>
+
+<script>
+    // https://stackoverflow.com/questions/53637874/set-value-to-input-field-onchange-from-other-input-field
+    function updateTotalAmount() {
+        let item = document.getElementById('input-itemID').value
+        let quantity = document.getElementById('input-itemQuantity').value
+        amount = document.getElementById('input-itemTotalAmount')
+
+        if (item != '' && quantity != 0) {
+            let price = 0
+            {{#each items}}
+                if ({{this.itemID}} == item) {
+                    price = {{this.itemPrice}}
+                }
+            {{/each}}
+            
+            // https://stackoverflow.com/questions/6134039/format-number-to-always-show-2-decimal-places
+            amount.value = Number(quantity*price).toFixed(4)
+        } else {
+            amount.value = ''
+        }
+
+    }
+</script>

@@ -23,20 +23,39 @@ app.use(express.static(__dirname + '/public'));         // this is needed to all
 
 app.get('/ordersWithItems', function(req, res)
 {
-    // Declare Query 1
-    let query1;
-
-    // If there is no query string, we just perform a basic SELECT
-    query1 = "SELECT * FROM OrdersWithItems;";
+    // Declare queries
+    let query1 = "SELECT * FROM OrdersWithItems;";
+    let query2 = "SELECT * FROM Orders;"
+    let query3 = "SELECT * FROM Items"
 
 
     // Run the 1st query
     db.pool.query(query1, function(error, rows, fields){
         
         // Save the items
-        let items = rows;
+        let ordersWithItems = rows;
 
-        return res.render('ordersWithItems', {data: items});
+        db.pool.query(query2, function(error, rows, fields) {
+            let orders = rows;
+
+            db.pool.query(query3, function(error, rows, fields) {
+                let items = rows;
+
+                let itemMap = {}
+                items.map(item => {
+                    let id = parseInt(item.itemID, 10);
+    
+                    itemMap[id] = item["name"];
+                })
+    
+                // Overwrite the homeworld ID with the name of the planet in the people object
+                ordersWithItems = ordersWithItems.map(owi => {
+                    return Object.assign(owi, {itemName: itemMap[owi.itemID]})
+                })
+
+                return res.render('ordersWithItems', {ordersWithItems: ordersWithItems, orders: orders, items: items});
+            })
+        })
     })
 });
 
