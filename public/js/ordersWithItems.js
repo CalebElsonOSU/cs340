@@ -60,6 +60,9 @@ addOrdersWithItemsForm.addEventListener("submit", function (e) {
     // Send the request and wait for the response
     xhttp.send(JSON.stringify(data));
 
+    // TODO: Insert row into correct place
+    // Fix for issues with ordering/rendering
+    location.reload();
 })
 
 
@@ -146,9 +149,7 @@ function deletePerson(orderID, itemID) {
     // Tell our AJAX request how to resolve
     xhttp.onreadystatechange = () => {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
-
-            // Add the new data to the table
-            //deleteRow(personID);
+            // TODO: Delete correct row
         }
         else if (xhttp.readyState == 4 && xhttp.status != 204) {
             console.log("There was an error with the input.")
@@ -157,6 +158,7 @@ function deletePerson(orderID, itemID) {
     // Send the request and wait for the response
     xhttp.send(JSON.stringify(data));
 
+    // Avoid needing row number for element to delete
     location.reload();
 }
 

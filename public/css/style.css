@@ -1,27 +1,7 @@
+@import url("http://yui.yahooapis.com/pure/0.5.0/pure-min.css");
 body {
     /* tanzania flag colors */
     color: #00A3DD;
-}
-
-@media (prefers-color-scheme: light) {
-	body {
-		background-color: #f5f5f5;
-	}
-
-    input {
-        background-color: #f5f5f5;
-        color: black;
-    }
-
-    select {
-        background-color: #f5f5f5;
-        color: black;
-    }
-
-    button {
-        background-color: #f5f5f5;
-        color: black;
-    }
 }
 
 @media (prefers-color-scheme: dark) {
@@ -40,6 +20,11 @@ body {
     }
 
     button {
+        background-color: #4d5055;
+        color: white;
+    }
+    
+    .pure-form select {
         background-color: #4d5055;
         color: white;
     }

@@ -1,4 +1,4 @@
-<h1>Items of Orders</h1>
+<h1>Orders with Items</h1>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
 <table class="pure-table pure-table-bordered" id="ordersWithItems-table">
@@ -33,6 +33,13 @@
     <form class="pure-form" id="add-ordersWithItems-form-ajax">
         <label for="input-orderID">orderID: </label>
         <input type="number" name="input-orderID" id="input-orderID" required>
+
+        <select name="input-orderID" id="input-orderID" required>
+            <option value="">Select an orderID</option>
+            {{#each (unique (pluck data "orderID"))}}{{.}}
+            <option value="{{this}}">{{this}}</option>
+            {{/each}}
+        </select>
         
         <label for="input-itemID">itemID: </label>
         <input type="number" name="input-itemID" id="input-itemID" required>
@@ -42,6 +49,8 @@
 
         <label for="input-itemTotalAmount">itemTotalAmount: </label>
         <input type="number" min="0.01" step="0.01" name="input-itemTotalAmount" id="input-itemTotalAmount" required>
+
+        <label for="input-homeworld">Homeworld: </label>
 
         <input type="submit">
     </form>

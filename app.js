@@ -13,6 +13,9 @@ app.set('view engine', '.hbs');                 // Tell express to use the handl
 // Database
 var db = require('./database/db-connector')
 
+// Handlebars helpers
+var helpers = require('handlebars-helpers')();
+
 // app.js - SETUP section
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
