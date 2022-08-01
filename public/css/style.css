@@ -1,6 +1,11 @@
 body {
     /* tanzania flag colors */
     color: #00A3DD;
+    margin: 1em;
+}
+
+.pure-form button {
+    background-color: #00A3DD;
 }
 
 a {
