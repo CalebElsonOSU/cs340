@@ -31,9 +31,6 @@
 <p>To add a new item, please enter its information below and click 'Submit'!</p>
 <fieldset>
     <form class="pure-form" id="add-ordersWithItems-form-ajax">
-        <label for="input-orderID">orderID: </label>
-        <input type="number" name="input-orderID" id="input-orderID" required>
-
         <select name="input-orderID" id="input-orderID" required>
             <option value="">Select an orderID</option>
             {{#each (unique (pluck data "orderID"))}}{{.}}
