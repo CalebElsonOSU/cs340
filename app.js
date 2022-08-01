@@ -101,7 +101,7 @@ app.get('/employees', function (req, res) {
 });
 
 app.get('/', function (req, res) {
-    res.sendfile(__dirname + '/views/index.html');
+    res.render('index')
 });
 
 app.get('/patrons', function (req, res) {
