@@ -3,6 +3,14 @@ body {
     color: #00A3DD;
 }
 
+a {
+    color: #1EB53A;
+}
+
+a:active {
+    filter: brightness(0.85);
+}
+
 @media (prefers-color-scheme: dark) {
 	body {
 		background-color: #222;

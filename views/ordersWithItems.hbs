@@ -31,32 +31,47 @@
 {{!-- Form to add a record to the table  --}}
 <h2>Add Item to Order</h2>
 <p>To add a new item, please enter its information below and click 'Submit'!</p>
-<fieldset>
-    <form class="pure-form" id="add-ordersWithItems-form-ajax">
-        <select name="input-orderID" id="input-orderID" required>
-            <option value="">Select an orderID</option>
-            {{!--{{#each (unique (pluck data "orderID"))}}{{.}} --}}
-            {{#each orders}}
-                <option value="{{this.orderID}}">{{this.orderID}}</option>
-            {{/each}}
-        </select>
+<p>Combinations of orderID and itemID must be unique</p>
+<form class="pure-form pure-form-aligned" id="add-ordersWithItems-form-ajax">
+    <fieldset>
+        <div class="pure-control-group">
+            <label for="input-orderID">orderID:</label>
+            <select name="input-orderID" id="input-orderID" required>
+                <option value="">Select an orderID</option>
+                {{!--{{#each (unique (pluck data "orderID"))}}{{.}} --}}
+                {{#each orders}}
+                    <option value="{{this.orderID}}">{{this.orderID}}</option>
+                {{/each}}
+            </select>
+        </div>
 
-        <select name="input-itemID" id="input-itemID" onchange="updateTotalAmount()" required>
-            <option value="">Select an item</option>
-            {{!--{{#each (unique (pluck data "orderID"))}}{{.}} --}}
-            {{#each items}}
-                <option value="{{this.itemID}}">{{this.name}}</option>
-            {{/each}}
-        </select>
+        <div class="pure-control-group">
+            <label for="inpute-ItemId">itemID:</label>
+            <select name="input-itemID" id="input-itemID" onchange="updateTotalAmount()" required>
+                <option value="">Select an item</option>
+                {{!--{{#each (unique (pluck data "orderID"))}}{{.}} --}}
+                {{#each items}}
+                    <option value="{{this.itemID}}">{{this.name}}</option>
+                {{/each}}
+            </select>
+        </div>
 
-        <label for="input-itemQuantity">itemQuantity: </label>
-        <input type="number" name="input-itemQuantity" id="input-itemQuantity" onkeyup="updateTotalAmount()" required>
+        <div class="pure-control-group">
+            <label for="input-itemQuantity">itemQuantity: </label>
+            <input type="number" name="input-itemQuantity" id="input-itemQuantity" onkeyup="updateTotalAmount()" required>
+        </div>
 
-        <label for="input-itemTotalAmount">itemTotalAmount: </label>
-        <input type="number" min="0.01" step="0.01" name="input-itemTotalAmount" id="input-itemTotalAmount" required>
-        <input type="submit">
-    </form>
-</fieldset>
+        <div class="pure-control-group">
+            <label for="input-itemTotalAmount">itemTotalAmount: </label>
+            <input type="number" min="0.01" step="0.01" name="input-itemTotalAmount" id="input-itemTotalAmount" required>
+        </div>
+
+        <div class="pure-controls">
+            <button type="submit" class="pure-button pure-button-primary">Submit</button>
+        </div>
+    </fieldset>
+</form>
+
 
 <p>&nbsp;</p>
 {{!-- Form to update a record to the table  --}}
