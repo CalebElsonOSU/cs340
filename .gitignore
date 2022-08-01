@@ -107,4 +107,4 @@ dist
 .tern-port
 
 # Database connector
-database/db-connector.js
+./database/db-connector
