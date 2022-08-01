@@ -1,0 +1,84 @@
+<html>
+<head>
+<title>Roles</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<h1>Roles</h1>
+
+[ <a href="./">Home</a> | <a href="./patrons">Patrons</a> | <a href="./orders">Orders</a> | <a href="./restaurants">Restaurants</a> | <a href="./employees">Employees</a> | <a href="./items">Items</a> | <a href="./roles">Roles</a> | <a href="./ordersWithItems">Items of Order</a> | <a href="./restaurantsWithEmployees">Employees of Restaurant</a> | <a href="./ordersWithRestaurants">Orders of Restaurant</a> ]
+<div id="browse" style="display: block">
+<p><strong>Browse Roles</strong></p>
+<table border="1" cellpadding="5">
+  <tr>
+    <th><a href="#">New</a></th>
+    <th></th>
+    <th>roleID</th>
+    <th>roleName</th>
+  </tr>
+  <tr>
+    <td><a href="#">Edit</a></td>
+    <td><a href="#">Delete</a></td>
+    <td align="right"  >0</td>
+    <td >Driver</td>
+  </tr>
+  <tr>
+    <td><a href="#">Edit</a></td>
+    <td><a href="#">Delete</a></td>
+    <td align="right"  >1</td>
+    <td >Server</td>
+  </tr>
+  <tr>
+    <td><a href="#">Edit</a></td>
+    <td><a href="#">Delete</a></td>
+    <td align="right"  >2</td>
+    <td >Cook</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+</div> <!-- browse -->
+<div id="insert" style="display: block">
+    <form id="addRoles">
+        <legend><strong>Add Roles</strong></legend>
+          <fieldset class="fields">
+            <label> roleName </label> <input type="text" name="roleName">
+          </fieldset>
+          <input class="btn" type="submit" id="addRoles" value="Add a role">
+          <input class="btn" type="button" value="cancel">
+	</form> <!--add new Roles-->
+</div><!-- insert -->
+
+<p>&nbsp;</p>
+<div id="update" style="display: block">
+  <form id="updateRoles">
+      <legend><strong>Update Roles</strong></legend>
+          <fieldset class="fields">
+            <label for="roleID">roleID</label>
+            <select name="roleID">
+              <option value="1">0</option>
+              <option value="1">1</option>
+              <option value="1">2</option>
+          </select>
+          <label> roleName </label> <input type="text" name="roleName">
+    </fieldset>
+    <input class="btn" type="submit" id="UpdateSaveRoles" value="Save Updated Roles">
+          <input class="btn" type="button" value="cancel" >
+  </form> 
+</div><!-- update -->
+<p>&nbsp;</p>
+<div id="delete" style="display: block">
+  <form id="deleteRoles">
+      <legend><strong>Delete Roles</strong></legend>
+          <fieldset class="fields">
+          <p>Are you sure you wish to delete the following?</p>
+          <label>ID:</label> 1
+            <label> <strong>roleName</strong> </label> Server
+            
+    </fieldset>
+    <input class="btn" type="submit" id="DeleteRoles" value="Delete Roles">
+          <input class="btn" type="button" value="cancel" >
+  </form> 
+</div><!-- delete -->
+</body>
+</html>

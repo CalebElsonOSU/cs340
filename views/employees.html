@@ -1,0 +1,109 @@
+<html>
+<head>
+<title>Employees</title>
+<link href="../public/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<h1>Employees</h1>
+
+[ <a href="./">Home</a> | <a href="./patrons">Patrons</a> | <a href="./orders">Orders</a> | <a href="./restaurants">Restaurants</a> | <a href="./employees">Employees</a> | <a href="./items">Items</a> | <a href="./roles.html">Roles</a> | <a href="./ordersWithItems">Items of Order</a> | <a href="./restaurantsWithEmployees">Employees of Restaurant</a> | <a href="./ordersWithRestaurants">Orders of Restaurant</a> ]
+<div id="browse" style="display: block">
+<p><strong>Browse Employees</strong></p>
+<form id="search">
+  <input type="text" placeholder="Search by role...">
+  <input type="button" value="Submit">
+  <input type="reset" id="search"/> 
+</form>
+<div></div>
+<table border="1" cellpadding="5">
+  <tr>
+    <th><a href="#">New</a></th>
+    <th></th>
+    <th>employeeID</th>
+    <th>name</th>
+    <th>roleID</th>
+    <th>roleName</th>
+    <th>pay</th>
+  </tr>
+  <tr>
+    <td><a href="#">Edit</a></td>
+    <td><a href="#">Delete</a></td>
+    <td align="right"  >0</td>
+    <td >Judd Artie</td>
+    <td>0</td>
+    <td>Driver</td>
+    <td>22.22</td>
+  </tr>
+  <tr>
+    <td><a href="#">Edit</a></td>
+    <td><a href="#">Delete</a></td>
+    <td align="right"  >1</td>
+    <td >Jemma Corina</td>
+    <td>1</td>
+    <td>Server</td>
+    <td>18.70</td>
+  </tr>
+  <tr>
+    <td><a href="#">Edit</a></td>
+    <td><a href="#">Delete</a></td>
+    <td align="right"  >2</td>
+    <td >Hudson Dana</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+</div> <!-- browse -->
+<div id="insert" style="display: block">
+    <form id="addEmployees">
+        <legend><strong>Add Employees</strong></legend>
+          <fieldset class="fields">
+            <label> Name </label> <input type="text" name="name">
+            <label> Role ID </label> <input type="text" name="roleID">
+            <label> Pay </label> <input type="text" name="pay">
+          </fieldset>
+          <input class="btn" type="submit" id="addEmployees" value="Add a Employees">
+          <input class="btn" type="button" value="cancel">
+	</form> <!--add new Employees-->
+</div><!-- insert -->
+
+<p>&nbsp;</p>
+<div id="update" style="display: block">
+  <form id="updateEmployees">
+      <legend><strong>Update Employees</strong></legend>
+          <fieldset class="fields">
+            <select name="employeeID">
+              <option value="1">0</option>
+              <option value="1">1</option>
+              <option value="1">2</option>
+          </select>
+          <label> Name </label> <input type="text" name="name">
+          <select name="roleID">
+            <option value="1">0</option>
+            <option value="1">1</option>
+            <option value="1">2</option>
+        </select>
+          <label> Pay </label> <input type="text" name="pay">
+    </fieldset>
+    <input class="btn" type="submit" id="UpdateSaveEmployees" value="Save Update Employees">
+          <input class="btn" type="button" value="cancel" >
+  </form> 
+</div><!-- update -->
+<p>&nbsp;</p>
+<div id="delete" style="display: block">
+  <form id="deleteEmployees">
+      <legend><strong>Delete Employees</strong></legend>
+          <fieldset class="fields">
+          <p>Are you sure you wish to delete the following?</p>
+          <label>ID:</label> 1
+            <label> <strong>Name</strong> </label> Jemma Corina
+            
+    </fieldset>
+    <input class="btn" type="submit" id="DeleteEmployees" value="Delete Employees">
+          <input class="btn" type="button" value="cancel" >
+  </form> 
+</div><!-- delete -->
+</body>
+</html>

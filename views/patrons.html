@@ -1,0 +1,96 @@
+<html>
+<head>
+<title>Patrons</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<h1>Patrons</h1>
+
+[ <a href="./">Home</a> | <a href="./patrons">Patrons</a> | <a href="./orders">Orders</a> | <a href="./restaurants">Restaurants</a> | <a href="./employees">Employees</a> | <a href="./items">Items</a> | <a href="./roles.html">Roles</a> | <a href="./ordersWithItems">Items of Order</a> | <a href="./restaurantsWithEmployees">Employees of Restaurant</a> | <a href="./ordersWithRestaurants">Orders of Restaurant</a> ]
+<div id="browse" style="display: block">
+<p><strong>Browse Patrons</strong></p>
+<table border="1" cellpadding="5">
+  <tr>
+    <th><a href="#">New</a></th>
+    <th></th>
+    <th>patronID</th>
+    <th>name</th>
+    <th>phoneNum</th>
+    <th>address</th>
+  </tr>
+  <tr>
+    <td><a href="#">Edit</a></td>
+    <td><a href="#">Delete</a></td>
+    <td align="right"  >0</td>
+    <td >Joe Smith</td>
+    <td>555-123-4567</td>
+    <td>123 Main St</td>
+  </tr>
+  <tr>
+    <td><a href="#">Edit</a></td>
+    <td><a href="#">Delete</a></td>
+    <td align="right"  >1</td>
+    <td >Becky Shultz</td>
+    <td>4779876543</td>
+    <td>44 George St</td>
+  </tr>
+  <tr>
+    <td><a href="#">Edit</a></td>
+    <td><a href="#">Delete</a></td>
+    <td align="right"  >2</td>
+    <td >Jenny Sanders</td>
+    <td>(455) 444-8888</td>
+    <td>1208 S Brooklyn Ave</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+</div> <!-- browse -->
+<div id="insert" style="display: block">
+    <form id="addPatron">
+        <legend><strong>Add Patron</strong></legend>
+          <fieldset class="fields">
+            <label> Name </label> <input type="text" name="name">
+            <label> Phone number </label> <input type="text" name="phoneNum">
+            <label> Address </label> <input type="text" name="address">
+          </fieldset>
+          <input class="btn" type="submit" id="addPatron" value="Add a Patron">
+          <input class="btn" type="button" value="cancel">
+	</form> <!--add new patron-->
+</div><!-- insert -->
+
+<p>&nbsp;</p>
+<div id="update" style="display: block">
+  <form id="updatePatron">
+      <legend><strong>Update Patron</strong></legend>
+          <fieldset class="fields">
+            <label for="patronID">patronID</label>
+            <select name="patronID">
+              <option value="1">0</option>
+              <option value="1">1</option>
+              <option value="1">2</option>
+          </select>
+          <label> Name </label> <input type="text" name="name">
+          <label> Phone number </label> <input type="text" name="phoneNum">
+          <label> Address </label> <input type="text" name="address">
+    </fieldset>
+    <input class="btn" type="submit" id="UpdateSavePatron" value="Save Update Patron">
+          <input class="btn" type="button" value="cancel" >
+  </form> 
+</div><!-- update -->
+<p>&nbsp;</p>
+<div id="delete" style="display: block">
+  <form id="deletePatron">
+      <legend><strong>Delete Patron</strong></legend>
+          <fieldset class="fields">
+          <p>Are you sure you wish to delete the following?</p>
+          <label>ID:</label> 1
+            <label> <strong>Name</strong> </label> Becky Shultz
+            
+    </fieldset>
+    <input class="btn" type="submit" id="DeletePatron" value="Delete Patron">
+          <input class="btn" type="button" value="cancel" >
+  </form> 
+</div><!-- delete -->
+</body>
+</html>

@@ -1,0 +1,79 @@
+
+<h1>Items of Orders</h1>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<table id="people-table">
+    <thead>
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+            <th>delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each data}}
+        <tr>
+            <td>{{this.orderID}}</td>
+            <td>{{this.itemID}}</td>
+            <td>{{this.itemQuantity}}</td>
+            <td>{{this.itemTotalAmount}}</td>
+            <td><button onclick="deletePerson({{this.orderID}}, {{this.itemID}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="./js/delete_person.js"></script>
+
+
+{{!-- Form to add a record to the table  --}}
+<h2>Add Item</h2>
+<p>To add a new item, please enter its information below and click 'Submit'!</p>
+<fieldset>
+    <form id="add-ordersWithItems-form-ajax">
+        <label for="input-orderID">orderID: </label>
+        <input type="number" name="input-orderID" id="input-orderID" required>
+        
+        <label for="input-itemID">itemID: </label>
+        <input type="number" name="input-itemID" id="input-itemID" required>
+
+        <label for="input-itemQuantity">itemQuantity: </label>
+        <input type="number" name="input-itemQuantity" id="input-itemQuantity" required>
+
+        <label for="input-itemTotalAmount">itemTotalAmount: </label>
+        <input type="number" min="0.01" step="0.01" name="input-itemTotalAmount" id="input-itemTotalAmount" required>
+
+        <input type="submit">
+    </form>
+</fieldset>
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="./js/add_ordersWithItems.js"></script>
+
+
+<h2>Updating A User's HomeWorld Form</h2>
+<p>To update a specific user's homeworld select their name from the drop-down menu on the left and their desired homeworld from the drop down menu on the right</p>
+<fieldset>
+    <form id="update-person-form-ajax">
+        <label for="input-fullname">Full name: </label>
+        <select name="input-fullname" id="mySelect">
+            <option value="test">Select a Person</option>
+            {{#each data}}
+            <option value="{{this.id}}">{{this.fname}} {{this.lname}}</option>
+            {{/each}}
+        </select>
+        <label for="input-homeworld">Homeworld: </label>
+        <select name="input-homeworld" id="input-homeworld-update">
+            <option>Select a Planet</option>
+            {{#each planets}}
+            <option value="{{this.id}}">{{this.name}}</option>
+            {{/each}}
+        </select>
+        <input type="submit">
+    </form>
+</fieldset>
+
+
+<script src="./js/update_person.js"></script>
+

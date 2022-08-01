@@ -1,0 +1,100 @@
+<html>
+<head>
+<title>Restaurants</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<h1>Restaurants</h1>
+
+[ <a href="./">Home</a> | <a href="./patrons">Patrons</a> | <a href="./orders">Orders</a> | <a href="./restaurants">Restaurants</a> | <a href="./employees">Employees</a> | <a href="./items">Items</a> | <a href="./roles.html">Roles</a> | <a href="./ordersWithItems">Items of Order</a> | <a href="./restaurantsWithEmployees">Employees of Restaurant</a> | <a href="./ordersWithRestaurants">Orders of Restaurant</a> ]
+<div id="browse" style="display: block">
+<p><strong>Browse Restaurants</strong></p>
+<table border="1" cellpadding="5">
+  <tr>
+    <th><a href="#">New</a></th>
+    <th></th>
+    <th>restaurantID</th>
+    <th>location</th>
+    <th>phoneNum</th>
+    <th>hours</th>
+    <th>employees</th>
+  </tr>
+  <tr>
+    <td><a href="#">Edit</a></td>
+    <td><a href="#">Delete</a></td>
+    <td align="right"  >0</td>
+    <td >south central</td>
+    <td>3559870456</td>
+    <td>10am-11pm</td>
+    <td>Judd Artie</td>
+  </tr>
+  <tr>
+    <td><a href="#">Edit</a></td>
+    <td><a href="#">Delete</a></td>
+    <td align="right"  >1</td>
+    <td >east village</td>
+    <td>3559871234</td>
+    <td>10am-2am</td>
+    <td>Jemma Corina</td>
+  </tr>
+  <tr>
+    <td><a href="#">Edit</a></td>
+    <td><a href="#">Delete</a></td>
+    <td align="right"  >2</td>
+    <td >alameda</td>
+    <td>3559874444</td>
+    <td>10am-10pm</td>
+    <td>Hudson Dana</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+</div> <!-- browse -->
+<div id="insert" style="display: block">
+    <form id="addRestaurants">
+        <legend><strong>Add Restaurants</strong></legend>
+          <fieldset class="fields">
+            <label> Location </label> <input type="text" name="location">
+            <label> Phone number </label> <input type="text" name="phoneNum">
+            <label> Hours </label> <input type="text" name="hours">
+          </fieldset>
+          <input class="btn" type="submit" id="addRestaurants" value="Add a Restaurants">
+          <input class="btn" type="button" value="cancel">
+	</form> <!--add new Restaurants-->
+</div><!-- insert -->
+
+<p>&nbsp;</p>
+<div id="update" style="display: block">
+  <form id="updateRestaurants">
+      <legend><strong>Update Restaurants</strong></legend>
+          <fieldset class="fields">
+            <label for="restaurantID">restaurantID</label>
+            <select name="restaurantID">
+              <option value="1">0</option>
+              <option value="1">1</option>
+              <option value="1">2</option>
+          </select>
+          <label> Location </label> <input type="text" name="location">
+          <label> Phone number </label> <input type="text" name="phoneNum">
+          <label> Hours </label> <input type="text" name="hours">
+    </fieldset>
+    <input class="btn" type="submit" id="UpdateSaveRestaurants" value="Save Update Restaurants">
+          <input class="btn" type="button" value="cancel" >
+  </form> 
+</div><!-- update -->
+<p>&nbsp;</p>
+<div id="delete" style="display: block">
+  <form id="deleteRestaurants">
+      <legend><strong>Delete Restaurants</strong></legend>
+          <fieldset class="fields">
+          <p>Are you sure you wish to delete the following?</p>
+          <label>ID:</label> 1
+            <label> <strong>Location</strong> </label> east village
+            
+    </fieldset>
+    <input class="btn" type="submit" id="DeleteRestaurants" value="Delete Restaurants">
+          <input class="btn" type="button" value="cancel" >
+  </form> 
+</div><!-- delete -->
+</body>
+</html>

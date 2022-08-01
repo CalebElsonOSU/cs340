@@ -1,0 +1,84 @@
+<html>
+<head>
+<title>Orders of Restaurant</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<h1>Orders of Restaurant</h1>
+
+[ <a href="./">Home</a> | <a href="./patrons">Patrons</a> | <a href="./orders">Orders</a> | <a href="./restaurants">Restaurants</a> | <a href="./employees">Employees</a> | <a href="./items">Items</a> | <a href="./roles.html">Roles</a> | <a href="./ordersWithItems">Items of Order</a> | <a href="./restaurantsWithEmployees">Employees of Restaurant</a> | <a href="./ordersWithRestaurants">Orders of Restaurant</a> ]
+<div id="browse" style="display: block">
+<p><strong>Browse Orders</strong></p>
+<table border="1" cellpadding="5">
+  <tr>
+    <th><a href="#">New</a></th>
+    <th></th>
+    <th>restaurantID</th>
+    <th>orderID</th>
+  </tr>
+  <tr>
+    <td><a href="#">Edit</a></td>
+    <td><a href="#">Delete</a></td>
+    <td align="right" >0</td>
+    <td align="right" >0</td>
+  </tr>
+  <tr>
+    <td><a href="#">Edit</a></td>
+    <td><a href="#">Delete</a></td>
+    <td align="right" >0</td>
+    <td align="right" >1</td>
+  </tr>
+  <tr>
+    <td><a href="#">Edit</a></td>
+    <td><a href="#">Delete</a></td>
+    <td align="right" >0</td>
+    <td align="right" >2</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+</div> <!-- browse -->
+<div id="insert" style="display: block">
+    <form id="addOrder">
+        <legend><strong>Add Order</strong></legend>
+          <fieldset class="fields">
+            <label> restaurantID </label> <input type="text" name="restaurantID">
+            <label> orderID </label> <input type="text" name="orderID">
+          </fieldset>
+          <input class="btn" type="submit" id="addOrder" value="Add an Order">
+          <input class="btn" type="button" value="cancel">
+	</form> <!--add new order -->
+</div><!-- insert -->
+
+<p>&nbsp;</p>
+<div id="update" style="display: block">
+  <form id="updateOrder">
+      <legend><strong>Update Order</strong></legend>
+          <fieldset class="fields">
+            <label for="restaurantID">restaurantID</label>
+            <select name="restaurantID">
+              <option value="1">0</option>
+              <option value="1">1</option>
+              <option value="1">2</option>
+          </select>
+          <label> orderID </label> <input type="text" name="orderID">
+    </fieldset>
+    <input class="btn" type="submit" id="UpdateSaveOrder" value="Save Update Order">
+          <input class="btn" type="button" value="cancel" >
+  </form> 
+</div><!-- update -->
+<p>&nbsp;</p>
+<div id="delete" style="display: block">
+  <form id="deleteOrder">
+      <legend><strong>Delete Order</strong></legend>
+          <fieldset class="fields">
+          <p>Are you sure you wish to delete the following?</p>
+          <label>orderID:</label> 0
+            
+    </fieldset>
+    <input class="btn" type="submit" id="DeleteOrder" value="Delete Order">
+          <input class="btn" type="button" value="cancel" >
+  </form> 
+</div><!-- delete -->
+</body>
+</html>

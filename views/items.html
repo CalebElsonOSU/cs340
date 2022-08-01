@@ -1,0 +1,91 @@
+<html>
+<head>
+<title>Items</title>
+<link href="/css/style.css" rel="stylesheet" type="text/css" />
+<link rel="import" href="nav.html">
+</head>
+
+<body>
+<h1>Items</h1>
+
+[ <a href="./">Home</a> | <a href="./patrons">Patrons</a> | <a href="./orders">Orders</a> | <a href="./restaurants">Restaurants</a> | <a href="./employees">Employees</a> | <a href="./items">Items</a> | <a href="./roles.html">Roles</a> | <a href="./ordersWithItems">Items of Order</a> | <a href="./restaurantsWithEmployees">Employees of Restaurant</a> | <a href="./ordersWithRestaurants">Orders of Restaurant</a> ]
+<div id="browse" style="display: block">
+<p><strong>Browse Items</strong></p>
+<table border="1" cellpadding="5">
+  <tr>
+    <th><a href="#">New</a></th>
+    <th></th>
+    <th>itemID</th>
+    <th>name</th>
+    <th>itemPrice</th>
+  </tr>
+  <tr>
+    <td><a href="#">Edit</a></td>
+    <td><a href="#">Delete</a></td>
+    <td align="right"  >0</td>
+    <td >Pepperoni</td>
+    <td align="right" >14.22</td>
+  </tr>
+  <tr>
+    <td><a href="#">Edit</a></td>
+    <td><a href="#">Delete</a></td>
+    <td align="right"  >1</td>
+    <td >Cheese</td>
+    <td align="right" >12.70</td>
+  </tr>
+  <tr>
+    <td><a href="#">Edit</a></td>
+    <td><a href="#">Delete</a></td>
+    <td align="right"  >2</td>
+    <td >Supreme</td>
+    <td align="right" >17.90</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+</div> <!-- browse -->
+<div id="insert" style="display: block">
+    <form id="addItems">
+        <legend><strong>Add Items</strong></legend>
+          <fieldset class="fields">
+            <label> Name </label> <input type="text" name="name">
+            <label> Item Price </label> <input type="text" name="itemPrice">
+          </fieldset>
+          <input class="btn" type="submit" id="addItems" value="Add an Item">
+          <input class="btn" type="button" value="cancel">
+	</form> <!--add new Items-->
+</div><!-- insert -->
+
+<p>&nbsp;</p>
+<div id="update" style="display: block">
+  <form id="updateItems">
+      <legend><strong>Update Items</strong></legend>
+          <fieldset class="fields">
+            <label for="restaurantID">restaurantID</label>
+            <select name="restaurantID">
+              <option value="1">0</option>
+              <option value="1">1</option>
+              <option value="1">2</option>
+          </select>
+          <label> Name </label> <input type="text" name="name">
+          <label> Item Price </label> <input type="text" name="itemPrice">
+    </fieldset>
+    <input class="btn" type="submit" id="UpdateSaveItems" value="Save Updated Items">
+          <input class="btn" type="button" value="cancel" >
+  </form> 
+</div><!-- update -->
+<p>&nbsp;</p>
+<div id="delete" style="display: block">
+  <form id="deleteItems">
+      <legend><strong>Delete Items</strong></legend>
+          <fieldset class="fields">
+          <p>Are you sure you wish to delete the following?</p>
+          <label>ID:</label> 1
+            <label> <strong>Name</strong> </label> Cheese
+            
+    </fieldset>
+    <input class="btn" type="submit" id="DeleteItems" value="Delete Items">
+          <input class="btn" type="button" value="cancel" >
+  </form> 
+</div><!-- delete -->
+</body>
+</html>
