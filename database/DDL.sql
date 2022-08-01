@@ -13,7 +13,7 @@ CREATE OR REPLACE TABLE `Orders` (
   `orderID` int NOT NULL UNIQUE AUTO_INCREMENT,
   `restaurantID` int NOT NULL,
   `patronID` int NOT NULL,
-  `totalAmount` decimal NOT NULL,
+  `totalAmount` decimal(19,4) NOT NULL,
   `orderDate` date DEFAULT NULL,
   PRIMARY KEY (`orderID`),
   FOREIGN KEY (restaurantID) references Restaurants(restaurantID) ON DELETE CASCADE,
@@ -27,7 +27,7 @@ CREATE OR REPLACE TABLE `OrdersWithItems` (
   FOREIGN KEY (orderID) references Orders(orderID),
   FOREIGN KEY (itemID) references Items(itemID),
   itemQuantity int NOT NULL,
-  itemTotalAmount decimal NOT NULL
+  itemTotalAmount decimal(19,4) NOT NULL
 );
 
 CREATE OR REPLACE TABLE `Restaurants` (
@@ -52,7 +52,7 @@ CREATE OR REPLACE TABLE `Employees` (
   `employeeID` int NOT NULL UNIQUE AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `roleID` int,
-  `pay` decimal,
+  `pay` decimal(19,4),
   PRIMARY KEY (`employeeID`),
   FOREIGN KEY (roleID) references Roles(roleID) ON DELETE CASCADE
 );
@@ -68,7 +68,7 @@ CREATE OR REPLACE TABLE `RestaurantsWithEmployees` (
 CREATE OR REPLACE TABLE `Items` (
   `itemID` int NOT NULL UNIQUE AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
-  `itemPrice` int NOT NULL,
+  `itemPrice` decimal(19,4) NOT NULL,
   `restaurantID` int,
   PRIMARY KEY (`itemID`),
   FOREIGN KEY (restaurantID) references Restaurants(restaurantID) ON DELETE CASCADE

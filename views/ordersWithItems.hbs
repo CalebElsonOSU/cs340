@@ -1,8 +1,7 @@
-
 <h1>Items of Orders</h1>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
-<table id="people-table">
+<table class="pure-table pure-table-bordered" id="ordersWithItems-table">
     <thead>
         <tr>
             {{#each data.[0]}}
@@ -19,20 +18,19 @@
             <td>{{this.orderID}}</td>
             <td>{{this.itemID}}</td>
             <td>{{this.itemQuantity}}</td>
-            <td>{{this.itemTotalAmount}}</td>
+            <td>{{toFixed this.itemTotalAmount 4}}</td>
             <td><button onclick="deletePerson({{this.orderID}}, {{this.itemID}})">Delete</button></td>
         </tr>
         {{/each}}
     </tbody>
 </table>
-<script src="./js/delete_person.js"></script>
 
-
+<p>&nbsp;</p>
 {{!-- Form to add a record to the table  --}}
-<h2>Add Item</h2>
+<h2>Add Item to Order</h2>
 <p>To add a new item, please enter its information below and click 'Submit'!</p>
 <fieldset>
-    <form id="add-ordersWithItems-form-ajax">
+    <form class="pure-form" id="add-ordersWithItems-form-ajax">
         <label for="input-orderID">orderID: </label>
         <input type="number" name="input-orderID" id="input-orderID" required>
         
@@ -48,10 +46,9 @@
         <input type="submit">
     </form>
 </fieldset>
-{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
-<script src="./js/add_ordersWithItems.js"></script>
 
-
+<p>&nbsp;</p>
+{{!-- Form to update a record to the table  --}}
 <h2>Updating A User's HomeWorld Form</h2>
 <p>To update a specific user's homeworld select their name from the drop-down menu on the left and their desired homeworld from the drop down menu on the right</p>
 <fieldset>
@@ -74,6 +71,5 @@
     </form>
 </fieldset>
 
-
-<script src="./js/update_person.js"></script>
-
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="./js/ordersWithItems.js"></script>

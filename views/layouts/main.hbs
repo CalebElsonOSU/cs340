@@ -1,19 +1,44 @@
-<!-- main.hbs-->
-
-
-
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <title>Tanzania Pizzeria DB</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@2.1.0/build/pure-min.css" integrity="sha384-yHIFVG6ClnONEA5yB5DJXfW2/KC173DIQrYoZMEtBvGzmf0PKiGyNEqe9N6BNDBH" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <header>
-🇹🇿 <a href="./">Home</a> | <a href="./patrons">Patrons</a> | <a href="./orders">Orders</a> | <a href="./restaurants">Restaurants</a> | <a href="./employees">Employees</a> | <a href="./items">Items</a> | <a href="./roles">Roles</a> | <a href="./ordersWithItems">Items of Order</a> | <a href="./restaurantsWithEmployees">Employees of Restaurant</a> | <a href="./ordersWithRestaurants">Orders of Restaurant</a> 🇹🇿
-
-    </header>
+    <div class="pure-menu pure-menu-horizontal pure-menu-scrollable">
+    <a href="/" class="pure-menu-link pure-menu-heading">🇹🇿 Tanzania Pizzeria</a>
+    <ul class="pure-menu-list">
+        <li class="pure-menu-item">
+            <a href="./patrons" class="pure-menu-link">Patrons</a>
+        </li>
+        <li class="pure-menu-item">
+            <a href="./orders" class="pure-menu-link">Orders</a>
+        </li>
+        <li class="pure-menu-item">
+            <a href="./resraurants" class="pure-menu-link">Restaurants</a>
+        </li>
+        <li class="pure-menu-item">
+            <a href="./employees" class="pure-menu-link">Employees</a>
+        </li>
+        <li class="pure-menu-item">
+            <a href="./items" class="pure-menu-link">Items</a>
+        </li>
+        <li class="pure-menu-item">
+            <a href="./roles" class="pure-menu-link">Roles</a>
+        </li>
+        <li class="pure-menu-item">
+            <a href="./ordersWithItems" class="pure-menu-link">Orders with Items</a>
+        </li>
+        <li class="pure-menu-item">
+            <a href="./restaurantsWithEmployees" class="pure-menu-link">Restaurants with Employees</a>
+        </li>
+        <li class="pure-menu-item">
+            <a href="./ordersWithRestaurants" class="pure-menu-link">Orders with Restaurants</a>
+        </li>
+    </ul>
+</div>
 
     {{{body}}}
 
