@@ -5,9 +5,11 @@
     <thead>
         <tr>
             {{#each ordersWithItems.[0]}}
+            {{#isnt @key 'itemName'}}
             <th>
                 {{@key}}
             </th>
+            {{/isnt}}
             {{/each}}
             <th>delete</th>
         </tr>
