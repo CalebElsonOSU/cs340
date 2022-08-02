@@ -21,6 +21,10 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use(express.static(__dirname + '/public'));         // this is needed to allow for the form to use the ccs style sheet/javscript
 
+
+/*
+    ordersWithItems
+*/
 app.get('/ordersWithItems', function(req, res)
 {
     // Declare queries
@@ -59,7 +63,7 @@ app.get('/ordersWithItems', function(req, res)
     })
 });
 
-app.post('/owls-ajax', function(req, res) {
+app.post('/add-ordersWithItems-ajax', function(req, res) {
     // Capture the incoming data and parse it back to a JS object
     let data = req.body;
 
@@ -96,6 +100,64 @@ app.post('/owls-ajax', function(req, res) {
     })
 });
 
+app.delete('/delete-ordersWithItems-ajax/', function(req,res,next){
+    let data = req.body;
+    let itemID = parseInt(data.itemID);
+    let orderID = parseInt(data.orderID);
+    let deleteOrdersWithItems = `DELETE FROM OrdersWithItems WHERE itemID = ? AND orderID = ?`;
+  
+      // Run the 1st query
+      db.pool.query(deleteOrdersWithItems, [itemID, orderID], function(error, rows, fields){
+      if (error) {
+  
+      // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+      console.log(error);
+      res.sendStatus(400);
+      }
+  
+      else
+      {
+          res.sendStatus(204);
+      }
+  })});
+  
+  app.put('/put-orderWithItems-ajax', function(req,res,next){                                   
+    let data = req.body;
+  
+    let orderID = parseInt(data.orderID)
+    let itemID = parseInt(data.itemID)
+    let itemQuantity = parseInt(data.itemQuantity)
+    let itemTotalAmount = parseFloat(data.itemTotalAmount)
+  
+    queryUpdateItemQuantity = `UPDATE OrdersWithItems SET itemQuantity = ? WHERE (OrdersWithItems.orderID = ? AND OrdersWithItems.itemID = ?)`;
+    queryUpdateItemTotalAmount = `UPDATE OrdersWithItems SET itemTotalAmount = ? WHERE (OrdersWithItems.orderID = ? AND OrdersWithItems.itemID = ?)`;
+    selectWorld = `SELECT * FROM bsg_planets WHERE id = ?`
+  
+          // Run the 1st query
+          db.pool.query(queryUpdateItemQuantity, [itemQuantity, orderID, itemID], function(error, rows, fields){
+              if (error) {
+  
+              // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+              console.log(error);
+              res.sendStatus(400);
+              }
+  
+              // If there was no error, we run our second query and return that data so we can use it to update the people's
+              // table on the front-end
+              else
+              {
+                  // Run the second query
+                  db.pool.query(queryUpdateItemTotalAmount, [itemTotalAmount, orderID, itemID], function(error, rows, fields) {
+                      if (error) {
+                          console.log(error);
+                          res.sendStatus(400);
+                      } else {
+                          res.send(rows);
+                      }
+                  })
+              }
+  })});
+
 app.get('/employees', function (req, res) {
     res.sendfile(__dirname + '/views/employees.html');
 });
@@ -113,7 +175,15 @@ app.get('/restaurants', function (req, res) {
 });
 
 app.get('/items', function (req, res) {
-    res.sendfile(__dirname + '/views/items.html');
+        // Declare queries
+        let query = "SELECT * FROM Items"
+    
+        // Run the 1st query
+        db.pool.query(query, function(error, rows, fields){
+    
+            return res.render('items', {items: rows});
+        })
+
 });
 
 app.get('/roles', function (req, res) {
@@ -138,61 +208,7 @@ app.get('/ordersWithRestaurants', function (req, res) {
 
 
 
-app.delete('/delete-ordersWithItems-ajax/', function(req,res,next){
-  let data = req.body;
-  let itemID = parseInt(data.itemID);
-  let orderID = parseInt(data.orderID);
-  let deleteOrdersWithItems = `DELETE FROM OrdersWithItems WHERE itemID = ? AND orderID = ?`;
 
-    // Run the 1st query
-    db.pool.query(deleteOrdersWithItems, [itemID, orderID], function(error, rows, fields){
-    if (error) {
-
-    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
-    console.log(error);
-    res.sendStatus(400);
-    }
-
-    else
-    {
-        res.sendStatus(204);
-    }
-})});
-
-app.put('/put-person-ajax', function(req,res,next){                                   
-  let data = req.body;
-
-  let homeworld = parseInt(data.homeworld);
-  let person = parseInt(data.fullname);
-
-  queryUpdateWorld = `UPDATE bsg_people SET homeworld = ? WHERE bsg_people.id = ?`;
-  selectWorld = `SELECT * FROM bsg_planets WHERE id = ?`
-
-        // Run the 1st query
-        db.pool.query(queryUpdateWorld, [homeworld, person], function(error, rows, fields){
-            if (error) {
-
-            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
-            console.log(error);
-            res.sendStatus(400);
-            }
-
-            // If there was no error, we run our second query and return that data so we can use it to update the people's
-            // table on the front-end
-            else
-            {
-                // Run the second query
-                db.pool.query(selectWorld, [homeworld], function(error, rows, fields) {
-        
-                    if (error) {
-                        console.log(error);
-                        res.sendStatus(400);
-                    } else {
-                        res.send(rows);
-                    }
-                })
-            }
-})});
 
 
 

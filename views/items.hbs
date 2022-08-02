@@ -1,0 +1,56 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<h1>Items</h1>
+
+<div id="browse" style="display: block">
+<p><strong>Browse Items</strong></p>
+<table class="pure-table pure-table-bordered" id="items-table">
+    <thead>
+        <tr>
+            {{#each items.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each items}}
+        <tr>
+            <td>{{this.itemID}}</td>
+            <td>{{this.name}}</td>
+            <td>{{this.itemPrice}}</td>
+            <td>{{this.restaurantID}}</td>
+            <div class="pure-controls">
+                <td><button onclick="deletePerson({{this.orderID}}, {{this.itemID}})"
+                    class="pure-button pure-button-primary">Delete</button></td>
+            </div>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<p>&nbsp;</p>
+
+
+<p>&nbsp;</p>
+{{!-- Form to add a record to the table  --}}
+<h2>Add Item</h2>
+<p>To add a new item, please enter its information below and click 'Submit'!</p>
+<form class="pure-form pure-form-aligned" id="add-item-form-ajax">
+    <fieldset>
+        <div class="pure-control-group">
+            <label for="input-name">name: </label>
+            <input type="text" name="input-name" id="input-name" required>
+        </div>
+
+        <div class="pure-control-group">
+            <label for="input-itemPrice">itemPrice: </label>
+            <input type="number" min="0.00" step="0.01" name="input-itemPrice"
+                id="input-itemPrice" required>
+        </div>
+
+        <div class="pure-controls">
+            <button type="submit" class="pure-button pure-button-primary">Submit</button>
+        </div>
+    </fieldset>
+</form>

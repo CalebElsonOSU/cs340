@@ -1,5 +1,5 @@
-<h1>Orders with Items</h1>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<h1>Orders with Items</h1>
 
 <table class="pure-table pure-table-bordered" id="ordersWithItems-table">
     <thead>
@@ -34,7 +34,7 @@
 {{!-- Form to add a record to the table  --}}
 <h2>Add Item to Order</h2>
 <p>To add a new item, please enter its information below and click 'Submit'!</p>
-<p>Combinations of orderID and itemID must be unique</p>
+<p>Combinations of orderID and itemID must be unique, duplicates will not be added</p>
 <form class="pure-form pure-form-aligned" id="add-ordersWithItems-form-ajax">
     <fieldset>
         <div class="pure-control-group">
@@ -50,7 +50,7 @@
 
         <div class="pure-control-group">
             <label for="inpute-ItemId">itemID:</label>
-            <select name="input-itemID" id="input-itemID" onchange="updateTotalAmount()" required>
+            <select name="input-itemID" id="input-itemID" onchange="addTotalAmount()" required>
                 <option value="">Select an item</option>
                 {{!--{{#each (unique (pluck data "orderID"))}}{{.}} --}}
                 {{#each items}}
@@ -62,12 +62,12 @@
         <div class="pure-control-group">
             <label for="input-itemQuantity">itemQuantity: </label>
             <input type="number" name="input-itemQuantity" id="input-itemQuantity"
-                onchange="updateTotalAmount()" onkeyup="updateTotalAmount()" required>
+                onchange="addTotalAmount()" onkeyup="addTotalAmount()" required>
         </div>
 
         <div class="pure-control-group">
             <label for="input-itemTotalAmount">itemTotalAmount: </label>
-            <input type="number" min="0.01" step="0.01" name="input-itemTotalAmount"
+            <input type="number" min="0.00" step="0.01" name="input-itemTotalAmount"
                 id="input-itemTotalAmount" required>
         </div>
 
@@ -80,38 +80,51 @@
 
 <p>&nbsp;</p>
 {{!-- Form to update a record to the table  --}}
-<h2>Updating A User's HomeWorld Form</h2>
-<p>To update a specific user's homeworld select their name
-    from the drop-down menu on the left and their desired homeworld from the drop down menu on the right</p>
-<fieldset>
-    <form id="update-person-form-ajax">
-        <label for="input-fullname">Full name: </label>
-        <select name="input-fullname" id="mySelect">
-            <option value="test">Select a Person</option>
-            {{#each data}}
-            <option value="{{this.id}}">{{this.fname}} {{this.lname}}</option>
-            {{/each}}
-        </select>
-        <label for="input-homeworld">Homeworld: </label>
-        <select name="input-homeworld" id="input-homeworld-update">
-            <option>Select a Planet</option>
-            {{#each planets}}
-            <option value="{{this.id}}">{{this.name}}</option>
-            {{/each}}
-        </select>
-        <input type="submit">
-    </form>
-</fieldset>
+<h2>Updating Item in Order </h2>
+<p>To update a specific item in an order select the correct orderWithItem
+    from the drop-down menu and enter the correct quantity and total amount</p>
 
+<form class="pure-form pure-form-aligned" id="update-orderWithItems-form-ajax">
+    <fieldset>
+        <div class ="pure-control-group">
+            <label for="update-orderWithItem">orderWithItem: </label>
+            <select name="update-orderWithItem" id="update-orderWithItem" onchange="updateTotalAmount()" required>
+                <option value="">Select an orderWithItem</option>
+                {{#each ordersWithItems}}
+                <option value={{JSONstringify this}}>orderID: {{this.orderID}}, itemName: {{this.itemName}}</option>
+                {{/each}}
+            </select>
+        </div>
+        <div class="pure-control-group">
+            <label for="update-itemQuantity">itemQuantity: </label>
+            <input type="number" name="update-itemQuantity" id="update-itemQuantity" min="1"
+                onchange="updateTotalAmount()" onkeyup="updateTotalAmount()" required>
+        </div>
+
+        <div class="pure-control-group">
+            <label for="update-itemTotalAmount">itemTotalAmount: </label>
+            <input type="number" min="0.00" step="0.01" name="update-itemTotalAmount"
+                id="update-itemTotalAmount" required>
+        </div>
+
+        <div class="pure-controls">
+            <button type="submit" class="pure-button pure-button-primary">Submit</button>
+        </div>
+    </fieldset>
+</form>
+
+
+
+{{!-- Scripts --}}
 {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
 <script src="./js/ordersWithItems.js"></script>
 
 <script>
     // https://stackoverflow.com/questions/53637874/set-value-to-input-field-onchange-from-other-input-field
-    function updateTotalAmount() {
+    function addTotalAmount() {
         let item = document.getElementById('input-itemID').value
         let quantity = document.getElementById('input-itemQuantity').value
-        amount = document.getElementById('input-itemTotalAmount')
+        var amount = document.getElementById('input-itemTotalAmount')
 
         if (item != '' && quantity != 0) {
             let price = 0
@@ -126,6 +139,31 @@
         } else {
             amount.value = ''
         }
+    }
+</script>
 
+<script>
+    // https://stackoverflow.com/questions/53637874/set-value-to-input-field-onchange-from-other-input-field
+    function updateTotalAmount() {
+        let itemValue = document.getElementById('update-orderWithItem').value
+        let quantity = document.getElementById('update-itemQuantity').value
+        var amount = document.getElementById('update-itemTotalAmount')
+
+        if (itemValue != '' && quantity != 0) {
+            let itemJSON = JSON.parse(itemValue)
+
+
+            let price = 0
+            {{#each items}}
+                if ({{this.itemID}} == itemJSON.itemID) {
+                    price = {{this.itemPrice}}
+                }
+            {{/each}}
+            
+            // https://stackoverflow.com/questions/6134039/format-number-to-always-show-2-decimal-places
+            amount.value = Number(quantity*price).toFixed(4)
+        } else {
+            amount.value = ''
+        }
     }
 </script>
