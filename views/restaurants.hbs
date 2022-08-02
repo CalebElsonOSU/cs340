@@ -1,0 +1,57 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<h1>Restaurants</h1>
+
+<div id="browse" style="display: block">
+<p><strong>Browse Restaurants</strong></p>
+<table class="pure-table pure-table-bordered" id="restaurants-table">
+    <thead>
+        <tr>
+            {{#each restaurants.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+        </tr>
+    </thead>
+    <tbody>
+        {{#each restaurants}}
+        <tr>
+            <td>{{this.restaurantID}}</td>
+            <td>{{this.location}}</td>
+            <td>{{this.phoneNum}}</td>
+            <td>{{this.hours}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+{{!-- Form to add a record to the table  --}}
+<h2>Add Restaurant</h2>
+<p>To add a new restaurant, please enter its information below and click 'Submit'!</p>
+<form class="pure-form pure-form-aligned" id="add-restaurants-form-ajax">
+    <fieldset>
+        <div class="pure-control-group">
+            <label for="input-location">location: </label>
+            <input type="text" name="input-location" id="input-location" required>
+        </div>
+
+        <div class="pure-control-group">
+            <label for="input-phoneNum">phoneNum: </label>
+            <input type="text" name="input-phoneNum" id="input-phoneNum" required>
+        </div>
+
+        <div class="pure-control-group">
+            <label for="input-hours">hours: </label>
+            <input type="text" name="input-hours" id="input-hours" required>
+        </div>
+
+        <div class="pure-controls">
+            <button type="submit" class="pure-button pure-button-primary">Submit</button>
+        </div>
+    </fieldset>
+</form>
+
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="./js/restaurants.js"></script>

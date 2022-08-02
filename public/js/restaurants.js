@@ -2,31 +2,34 @@
     Add
 */
 // Get the objects we need to modify
-let addItemsForm = document.getElementById('add-items-form-ajax');
+let addRestaurantsForm = document.getElementById('add-restaurants-form-ajax');
 
 // Modify the objects we need
-addItemsForm.addEventListener("submit", function (e) {
+addRestaurantsForm.addEventListener("submit", function (e) {
     
     // Prevent the form from submitting
     e.preventDefault();
 
     // Get form fields we need to get data from
-    let inputName = document.getElementById("input-name");
-    let inputItemPrice = document.getElementById("input-itemPrice");
+    let inputLocation = document.getElementById("input-location");
+    let inputPhoneNum = document.getElementById("input-phoneNum");
+    let inputHours = document.getElementById("input-hours")
 
     // Get the values from the form fields
-    let inputNameValue = inputName.value;
-    let inputItemPriceValue = inputItemPrice.value;
+    let locationValue = inputLocation.value
+    let phoneNumValue = inputPhoneNum.value
+    let hoursValue = inputHours.value
 
     // Put our data we want to send in a javascript object
     let data = {
-        name: inputNameValue,
-        itemPrice: inputItemPriceValue
+        location: locationValue,
+        phoneNum: phoneNumValue,
+        hours: hoursValue
     }
     
     // Setup our AJAX request
     var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "/add-items-ajax", true);
+    xhttp.open("POST", "/add-restaurants-ajax", true);
     xhttp.setRequestHeader("Content-type", "application/json");
 
     // Tell our AJAX request how to resolve
@@ -37,8 +40,9 @@ addItemsForm.addEventListener("submit", function (e) {
             // addRowToTable(xhttp.response);
 
             // Clear the input fields for another transaction
-            inputName.value = '';
-            inputItemPrice.value = '';
+            inputLocation.value = '';
+            inputPhoneNum.value = '';
+            inputHours.value = '';
 
             // TODO: Insert row into correct place
             // Fix for issues with ordering/rendering

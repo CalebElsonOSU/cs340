@@ -1,0 +1,82 @@
+{{!--
+<form id="search">
+  <input type="text" placeholder="Search by role...">
+  <input type="button" value="Submit">
+  <input type="reset" id="search"/> 
+</form>
+--}}
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<h1>Employees</h1>
+
+<div id="browse" style="display: block">
+<form class="pure-form" id="filter-employees-form-ajax">
+    <fieldset>
+        <select name="filter-roleName" id="filter-roleName" required>
+            <option value=''>Filter by role</option>
+            {{#each roles}}
+                <option value="{{this.roleName}}">{{this.roleName}}</option>
+            {{/each}}
+        </select>
+        <button type="submit" class="pure-button pure-button-primary">Submit</button>
+        <button type="reset" class="pure-button pure-button-primary" onclick="location='/employees'">Reset</button>
+    </fieldset>
+</form>
+<p><strong>Browse Employees</strong></p>
+<table class="pure-table pure-table-bordered" id="Employees-table">
+    <thead>
+        <tr>
+            {{#each employees.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+        </tr>
+    </thead>
+    <tbody>
+        {{#each employees}}
+        <tr>
+            <td>{{this.employeeID}}</td>
+            <td>{{this.name}}</td>
+            <td>{{this.roleName}}</td>
+            <td>{{this.pay}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+{{!-- Form to add a record to the table  --}}
+<h2>Add Employee</h2>
+<p>To add a new employee, please enter its information below and click 'Submit'!</p>
+<form class="pure-form pure-form-aligned" id="add-employees-form-ajax">
+    <fieldset>
+        <div class="pure-control-group">
+            <label for="input-name">name: </label>
+            <input type="text" name="input-name" id="input-name" required>
+        </div>
+
+          <div class="pure-control-group">
+            <label for="input-roleID">roleID:</label>
+            <select name="input-roleID" id="input-roleID">
+                <option value=''>Select a role</option>
+                {{#each roles}}
+                    <option value="{{this.roleID}}">{{this.roleName}}</option>
+                {{/each}}
+            </select>
+        </div>
+
+        <div class="pure-control-group">
+            <label for="input-pay">pay: </label>
+            <input type="number" min="0.00" step="0.01" name="input-pay" id="input-pay">
+        </div>
+
+        <div class="pure-controls">
+            <button type="submit" class="pure-button pure-button-primary">Submit</button>
+        </div>
+    </fieldset>
+</form>
+
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="./js/employees.js"></script>

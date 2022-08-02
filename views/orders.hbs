@@ -1,0 +1,72 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<h1>Orders</h1>
+
+<div id="browse" style="display: block">
+<p><strong>Browse Orders</strong></p>
+<table class="pure-table pure-table-bordered" id="orders-table">
+    <thead>
+        <tr>
+            {{#each orders.[0]}}
+            {{#isnt @key 'restaurantName'}}
+            {{#isnt @key 'patronName'}}
+            <th>
+                {{@key}}
+            </th>
+            {{/isnt}}
+            {{/isnt}}
+            {{/each}}
+        </tr>
+    </thead>
+    <tbody>
+        {{#each orders}}
+        <tr>
+            <td>{{this.orderID}}</td>
+            <td>{{this.restaurantName}}</td>
+            <td>{{this.patronName}}</td>
+            <td>{{default this.totalAmount 0}}</td>
+            <td>{{this.orderDate}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+{{!-- Form to add a record to the table  --}}
+<h2>Add Order</h2>
+<p>To add a new item, please enter its information below and click 'Submit'!</p>
+<form class="pure-form pure-form-aligned" id="add-orders-form-ajax">
+    <fieldset>
+          <div class="pure-control-group">
+            <label for="input-restaurantID">restaurantID:</label>
+            <select name="input-restaurantID" id="input-restaurantID" required>
+                <option value="">Select a restaurant</option>
+                {{#each restaurants}}
+                    <option value="{{this.restaurantID}}">{{this.location}}</option>
+                {{/each}}
+            </select>
+        </div>
+
+          <div class="pure-control-group">
+            <label for="input-patronID">patronID:</label>
+            <select name="input-patronID" id="input-patronID" required>
+                <option value="">Select a patron</option>
+                {{#each patrons}}
+                    <option value="{{this.patronID}}">{{this.name}}</option>
+                {{/each}}
+            </select>
+        </div>
+
+        <div class="pure-control-group">
+            <label for="input-orderDate">orderDate: </label>
+            <input type="date" name="input-orderDate" id="input-orderDate">
+        </div>
+
+        <div class="pure-controls">
+            <button type="submit" class="pure-button pure-button-primary">Submit</button>
+        </div>
+    </fieldset>
+</form>
+
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="./js/orders.js"></script>

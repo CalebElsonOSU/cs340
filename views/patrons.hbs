@@ -1,12 +1,12 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<h1>Items</h1>
+<h1>Patrons</h1>
 
 <div id="browse" style="display: block">
-<p><strong>Browse Items</strong></p>
-<table class="pure-table pure-table-bordered" id="items-table">
+<p><strong>Browse Patrons</strong></p>
+<table class="pure-table pure-table-bordered" id="patrons-table">
     <thead>
         <tr>
-            {{#each items.[0]}}
+            {{#each patrons.[0]}}
             <th>
                 {{@key}}
             </th>
@@ -14,23 +14,23 @@
         </tr>
     </thead>
     <tbody>
-        {{#each items}}
+        {{#each patrons}}
         <tr>
-            <td>{{this.itemID}}</td>
+            <td>{{this.patronID}}</td>
             <td>{{this.name}}</td>
-            <td>{{this.itemPrice}}</td>
+            <td>{{this.phoneNum}}</td>
+            <td>{{this.address}}</td>
         </tr>
         {{/each}}
     </tbody>
 </table>
 <p>&nbsp;</p>
 
-
 <p>&nbsp;</p>
 {{!-- Form to add a record to the table  --}}
-<h2>Add Item</h2>
-<p>To add a new item, please enter its information below and click 'Submit'!</p>
-<form class="pure-form pure-form-aligned" id="add-items-form-ajax">
+<h2>Add Patron</h2>
+<p>To add a new patron, please enter its information below and click 'Submit'!</p>
+<form class="pure-form pure-form-aligned" id="add-patrons-form-ajax">
     <fieldset>
         <div class="pure-control-group">
             <label for="input-name">name: </label>
@@ -38,9 +38,13 @@
         </div>
 
         <div class="pure-control-group">
-            <label for="input-itemPrice">itemPrice: </label>
-            <input type="number" min="0.00" step="0.01" name="input-itemPrice"
-                id="input-itemPrice" required>
+            <label for="input-phoneNum">phoneNum: </label>
+            <input type="text" name="input-phoneNum" id="input-phoneNum">
+        </div>
+
+        <div class="pure-control-group">
+            <label for="input-address">address: </label>
+            <input type="text" name="input-address" id="input-address">
         </div>
 
         <div class="pure-controls">
@@ -50,4 +54,4 @@
 </form>
 
 {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
-<script src="./js/items.js"></script>
+<script src="./js/patrons.js"></script>

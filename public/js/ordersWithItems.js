@@ -41,28 +41,26 @@ addOrdersWithItemsForm.addEventListener("submit", function (e) {
     xhttp.onreadystatechange = () => {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
 
-            // Add the new data to the table
-            addRowToTable(xhttp.response);
+            // // Add the new data to the table
+            // addRowToTable(xhttp.response);
 
             // Clear the input fields for another transaction
             inputOrderID.value = '';
             inputItemID.value = '';
             inputItemQuantity.value = '';
             inputItemTotalAmount.value = '';
+
+            // TODO: Insert row into correct place
+            // Fix for issues with ordering/rendering
+            location.reload();
         }
         else if (xhttp.readyState == 4 && xhttp.status != 200) {
-            console.log("reed", xhttp.readyState, "status", xhttp.status)
-            console.log(xhttp.response, "ord", inputOrderID.value, "itemid", inputItemID.value, "quant", inputItemQuantity.value, "totamount", inputItemTotalAmount.value, typeof(data.itemID), parseFloat(data.itemTotalAmount))
             console.log("There was an error with the input.")
         }
     }
 
     // Send the request and wait for the response
     xhttp.send(JSON.stringify(data));
-
-    // TODO: Insert row into correct place
-    // Fix for issues with ordering/rendering
-    location.reload();
 })
 
 
@@ -87,6 +85,9 @@ function deletePerson(orderID, itemID) {
     xhttp.onreadystatechange = () => {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
             // TODO: Delete correct row
+            // Fix for issues with ordering/rendering
+            location.reload();
+
         }
         else if (xhttp.readyState == 4 && xhttp.status != 204) {
             console.log("There was an error with the input.")
@@ -94,10 +95,6 @@ function deletePerson(orderID, itemID) {
     }
     // Send the request and wait for the response
     xhttp.send(JSON.stringify(data));
-
-    // TODO: Delete correct row
-    // Fix for issues with ordering/rendering
-    location.reload();
 }
 
 
@@ -145,8 +142,12 @@ updateorderWithItemsForm.addEventListener("submit", function (e) {
     xhttp.onreadystatechange = () => {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
 
-            // Add the new data to the table
-            updateRow(xhttp.response, fullNameValue);
+            // // Add the new data to the table
+            // updateRow(xhttp.response, fullNameValue);
+
+            // TODO: Update correct row
+            // Fix for issues with ordering/rendering
+            location.reload();
 
         }
         else if (xhttp.readyState == 4 && xhttp.status != 200) {
@@ -156,8 +157,4 @@ updateorderWithItemsForm.addEventListener("submit", function (e) {
 
     // Send the request and wait for the response
     xhttp.send(JSON.stringify(data));
-
-    // TODO: Update correct row
-    // Fix for issues with ordering/rendering
-    location.reload();
 })

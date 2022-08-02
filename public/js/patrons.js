@@ -2,31 +2,34 @@
     Add
 */
 // Get the objects we need to modify
-let addItemsForm = document.getElementById('add-items-form-ajax');
+let addPatronsForm = document.getElementById('add-patrons-form-ajax');
 
 // Modify the objects we need
-addItemsForm.addEventListener("submit", function (e) {
+addPatronsForm.addEventListener("submit", function (e) {
     
     // Prevent the form from submitting
     e.preventDefault();
 
     // Get form fields we need to get data from
     let inputName = document.getElementById("input-name");
-    let inputItemPrice = document.getElementById("input-itemPrice");
+    let inputPhoneNum = document.getElementById("input-phoneNum");
+    let inputAddress = document.getElementById("input-address")
 
     // Get the values from the form fields
-    let inputNameValue = inputName.value;
-    let inputItemPriceValue = inputItemPrice.value;
+    let nameValue = inputName.value
+    let phoneNumValue = inputPhoneNum.value
+    let addressValue = inputAddress.value
 
     // Put our data we want to send in a javascript object
     let data = {
-        name: inputNameValue,
-        itemPrice: inputItemPriceValue
+        name: nameValue,
+        phoneNum: phoneNumValue,
+        address: addressValue
     }
     
     // Setup our AJAX request
     var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "/add-items-ajax", true);
+    xhttp.open("POST", "/add-patrons-ajax", true);
     xhttp.setRequestHeader("Content-type", "application/json");
 
     // Tell our AJAX request how to resolve
@@ -38,7 +41,8 @@ addItemsForm.addEventListener("submit", function (e) {
 
             // Clear the input fields for another transaction
             inputName.value = '';
-            inputItemPrice.value = '';
+            inputPhoneNum.value = '';
+            inputAddress.value = '';
 
             // TODO: Insert row into correct place
             // Fix for issues with ordering/rendering

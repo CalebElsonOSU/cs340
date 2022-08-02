@@ -32,12 +32,10 @@ CREATE OR REPLACE TABLE `OrdersWithItems` (
 
 CREATE OR REPLACE TABLE `Restaurants` (
   `restaurantID` int NOT NULL UNIQUE AUTO_INCREMENT,
-  `itemID` int NOT NULL,
   `location` varchar(255) NOT NULL,
   `phoneNum` varchar(255) NOT NULL,
   `hours` varchar(255) NOT NULL,
-  PRIMARY KEY (`restaurantID`),
-  FOREIGN KEY (itemID) references Items(itemID) ON DELETE CASCADE
+  PRIMARY KEY (`restaurantID`)
 );
 
 CREATE OR REPLACE TABLE `OrdersWithRestaurants` (
@@ -69,9 +67,7 @@ CREATE OR REPLACE TABLE `Items` (
   `itemID` int NOT NULL UNIQUE AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `itemPrice` decimal(19,4) NOT NULL,
-  `restaurantID` int,
-  PRIMARY KEY (`itemID`),
-  FOREIGN KEY (restaurantID) references Restaurants(restaurantID) ON DELETE CASCADE
+  PRIMARY KEY (`itemID`)
 );
 
 CREATE OR REPLACE TABLE `Roles` (
@@ -105,27 +101,23 @@ VALUES
 INSERT INTO Orders (
   restaurantID,
   patronID,
-  orderDate,
-  totalAmount
+  orderDate
 )
 VALUES 
 (
-  "0",
-  "1",
-  "2022-07-11",
-  "28.44"
-),
-(
   "1",
   "2",
-  "2022-03-28",
-  "17.90"
+  "2022-07-11"
 ),
 (
-  "0",
-  "0",
-  "2022-04-22",
-  "38.10"
+  "2",
+  "3",
+  "2022-03-28"
+),
+(
+  "3",
+  "1",
+  "2022-04-22"
 );
 
 INSERT INTO OrdersWithItems (
@@ -137,19 +129,19 @@ INSERT INTO OrdersWithItems (
 VALUES 
 (
   "1",
-  "0",
+  "1",
   "2",
   "28.44"
 ),
 (
   "2",
-  "2",
+  "3",
   "1",
   "17.90"
 ),
 (
   "3",
-  "1",
+  "2",
   "3",
   "38.10"
 );
@@ -221,12 +213,12 @@ INSERT INTO Employees (
 VALUES 
 (
     "Judd Artie",
-    "0",
+    "1",
     "22.22"
 ),
 (
     "Jemma Corina",
-    "1",
+    "2",
     "18.70"
 ),
 (
