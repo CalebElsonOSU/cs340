@@ -11,7 +11,7 @@
             </th>
             {{/isnt}}
             {{/each}}
-            <th>delete</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -21,7 +21,10 @@
             <td>{{this.itemName}}</td>
             <td>{{this.itemQuantity}}</td>
             <td>{{toFixed this.itemTotalAmount 4}}</td>
-            <td><button onclick="deletePerson({{this.orderID}}, {{this.itemID}})">Delete</button></td>
+            <div class="pure-controls">
+                <td><button onclick="deletePerson({{this.orderID}}, {{this.itemID}})"
+                    class="pure-button pure-button-primary">Delete</button></td>
+            </div>
         </tr>
         {{/each}}
     </tbody>
@@ -58,12 +61,14 @@
 
         <div class="pure-control-group">
             <label for="input-itemQuantity">itemQuantity: </label>
-            <input type="number" name="input-itemQuantity" id="input-itemQuantity" onkeyup="updateTotalAmount()" required>
+            <input type="number" name="input-itemQuantity" id="input-itemQuantity"
+                onchange="updateTotalAmount()" onkeyup="updateTotalAmount()" required>
         </div>
 
         <div class="pure-control-group">
             <label for="input-itemTotalAmount">itemTotalAmount: </label>
-            <input type="number" min="0.01" step="0.01" name="input-itemTotalAmount" id="input-itemTotalAmount" required>
+            <input type="number" min="0.01" step="0.01" name="input-itemTotalAmount"
+                id="input-itemTotalAmount" required>
         </div>
 
         <div class="pure-controls">
@@ -76,7 +81,8 @@
 <p>&nbsp;</p>
 {{!-- Form to update a record to the table  --}}
 <h2>Updating A User's HomeWorld Form</h2>
-<p>To update a specific user's homeworld select their name from the drop-down menu on the left and their desired homeworld from the drop down menu on the right</p>
+<p>To update a specific user's homeworld select their name
+    from the drop-down menu on the left and their desired homeworld from the drop down menu on the right</p>
 <fieldset>
     <form id="update-person-form-ajax">
         <label for="input-fullname">Full name: </label>
