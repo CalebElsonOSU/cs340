@@ -1,7 +1,16 @@
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <h1>Orders</h1>
 
 <div id="browse" style="display: block">
+<form class="pure-form">
+    <fieldset>
+        <select name="filter-orders" id="filter-orders" onchange="filterTable()" required>
+            <option value=''>Filter by restaurant name</option>
+            {{#each restaurants}}
+                <option value="{{this.location}}">{{this.location}}</option>
+            {{/each}}
+        </select>
+    </fieldset>
+</form>
 <p><strong>Browse Orders</strong></p>
 <table class="pure-table pure-table-bordered" id="orders-table">
     <thead>
@@ -70,3 +79,31 @@
 
 {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
 <script src="./js/orders.js"></script>
+
+<script>
+    // Adapted from https://stackoverflow.com/questions/9127498/how-to-perform-a-real-time-search-and-filter-on-a-html-table
+    function filterTable() {
+        // Declare variables 
+        let inputValue = document.getElementById("filter-orders").value
+        let table = document.getElementById("orders-table")
+        let tr = table.getElementsByTagName("tr")
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")
+
+            for(j=0 ; j<td.length ; j++) {
+                let tdata = td[j]
+
+                if (tdata) {
+                    if (tdata.innerHTML.indexOf(inputValue) > -1) {
+                        tr[i].style.display = ""
+                        break
+                    } else {
+                        tr[i].style.display = "none"
+                    }
+                } 
+            }
+        }
+    }
+</script>

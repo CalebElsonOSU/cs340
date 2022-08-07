@@ -52,7 +52,6 @@
             <label for="inpute-ItemId">itemID:</label>
             <select name="input-itemID" id="input-itemID" onchange="addTotalAmount()" required>
                 <option value="">Select an item</option>
-                {{!--{{#each (unique (pluck data "orderID"))}}{{.}} --}}
                 {{#each items}}
                     <option value="{{this.itemID}}">{{this.name}}</option>
                 {{/each}}

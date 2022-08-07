@@ -136,9 +136,9 @@ app.delete('/delete-ordersWithItems-ajax/', function(req,res,next){
     let itemQuantity = parseInt(data.itemQuantity)
     let itemTotalAmount = parseFloat(data.itemTotalAmount)
   
-    queryUpdateItemQuantity = `UPDATE OrdersWithItems SET itemQuantity = ? WHERE (OrdersWithItems.orderID = ? AND OrdersWithItems.itemID = ?);`;
-    queryUpdateItemTotalAmount = `UPDATE OrdersWithItems SET itemTotalAmount = ? WHERE (OrdersWithItems.orderID = ? AND OrdersWithItems.itemID = ?);`;
-    selectWorld = `SELECT * FROM bsg_planets WHERE id = ?;`
+    let queryUpdateItemQuantity = `UPDATE OrdersWithItems SET itemQuantity = ? WHERE (OrdersWithItems.orderID = ? AND OrdersWithItems.itemID = ?);`;
+    let queryUpdateItemTotalAmount = `UPDATE OrdersWithItems SET itemTotalAmount = ? WHERE (OrdersWithItems.orderID = ? AND OrdersWithItems.itemID = ?);`;
+    let selectWorld = `SELECT * FROM bsg_planets WHERE id = ?;`
   
           // Run the 1st query
           db.pool.query(queryUpdateItemQuantity, [itemQuantity, orderID, itemID], function(error, rows, fields){
@@ -230,30 +230,6 @@ app.post('/add-employees-ajax', function(req, res) {
         }
     })
 });
-
-app.post('/filter-employees-ajax', function(req, res) {
-    // Capture the incoming data and parse it back to a JS object
-    let data = req.body;
-
-    // Create the query and run it on the database
-    query1 = `SELECT employeeID, name, roleID Roles.roleName, pay
-    FROM Employees
-    INNER JOIN Roles ON Employees.roleID = Roles.roleID AND Roles.roleName = ?
-    GROUP BY Roles.roleName DESC;`;
-    // Run query
-    db.pool.query(query1, [data['roleName']], function(error, rows, fields){
-        let employees = rows
-
-        let query2 = "SELECT * FROM Roles"
-
-        db.pool.query(query2, function(error, rows, fields) {
-            console.log("employees", employees)
-            res.send(employees)
-            //return res.render('employees', {employees: employees, roles: rows});
-        })        
-    })
-});
-
 
 
 
@@ -353,7 +329,7 @@ app.post('/add-restaurants-ajax', function(req, res) {
 
 
 /*
-    ordersWithItems
+    items
 */
 app.get('/items', function (req, res) {
     // Declare queries
@@ -400,8 +376,53 @@ app.post('/add-items-ajax', function(req, res) {
     })
 });
 
+
+
+
+/*
+    ordersWithItems
+*/
 app.get('/roles', function (req, res) {
-    res.sendfile(__dirname + '/views/roles.html');
+    // Declare queries
+    let query = "SELECT * FROM Roles"
+
+    // Run the 1st query
+    db.pool.query(query, function(error, rows, fields){
+        return res.render('roles', {roles: rows});
+    })
+});
+
+app.post('/add-roles-ajax', function(req, res) {
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+
+    let roleName = parseFloat(data.roleName)
+
+    // Create the query and run it on the database
+    query1 = `INSERT INTO Roles (roleName) VALUES ('${data['roleName']}')`;
+    db.pool.query(query1, function(error, rows, fields){
+
+        // Check to see if there was an error
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(401);
+        }
+        else
+        {
+            query2 = `SELECT * FROM Roles`;
+
+            db.pool.query(query2, function(error, rows, fields) {
+                if (error) {
+                    console.log(error)
+                    res.sendStatus(400)
+                } else {
+                    res.send(rows);
+                }
+            })
+        }
+    })
 });
 
 

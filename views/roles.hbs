@@ -1,0 +1,45 @@
+<h1>Roles</h1>
+
+<div id="browse" style="display: block">
+<p><strong>Browse Roles</strong></p>
+<table class="pure-table pure-table-bordered" id="roles-table">
+    <thead>
+        <tr>
+            {{#each roles.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+        </tr>
+    </thead>
+    <tbody>
+        {{#each roles}}
+        <tr>
+            <td>{{this.roleID}}</td>
+            <td>{{this.roleName}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<p>&nbsp;</p>
+
+
+<p>&nbsp;</p>
+{{!-- Form to add a record to the table  --}}
+<h2>Add Role</h2>
+<p>To add a new role, please enter its information below and click 'Submit'!</p>
+<form class="pure-form pure-form-aligned" id="add-roles-form-ajax">
+    <fieldset>
+        <div class="pure-control-group">
+            <label for="input-roleName">roleName: </label>
+            <input type="text" name="input-roleName" id="input-roleName" required>
+        </div>
+
+        <div class="pure-controls">
+            <button type="submit" class="pure-button pure-button-primary">Submit</button>
+        </div>
+    </fieldset>
+</form>
+
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="./js/roles.js"></script>
