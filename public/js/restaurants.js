@@ -4,7 +4,7 @@
     Add
 */
 // Get the objects we need to modify
-let addRestaurantsForm = document.getElementById('add-restaurants-form-ajax');
+let addRestaurantsForm = document.getElementById('add-restaurants-form-ajax')
 
 // Modify the objects we need
 addRestaurantsForm.addEventListener("submit", function (e) {
@@ -13,8 +13,8 @@ addRestaurantsForm.addEventListener("submit", function (e) {
     e.preventDefault();
 
     // Get form fields we need to get data from
-    let inputLocation = document.getElementById("input-location");
-    let inputPhoneNum = document.getElementById("input-phoneNum");
+    let inputLocation = document.getElementById("input-location")
+    let inputPhoneNum = document.getElementById("input-phoneNum")
     let inputHours = document.getElementById("input-hours")
 
     // Get the values from the form fields
@@ -30,25 +30,16 @@ addRestaurantsForm.addEventListener("submit", function (e) {
     }
     
     // Setup our AJAX request
-    var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "/add-restaurants-ajax", true);
-    xhttp.setRequestHeader("Content-type", "application/json");
+    var xhttp = new XMLHttpRequest()
+    xhttp.open("POST", "/add-restaurants-ajax", true)
+    xhttp.setRequestHeader("Content-type", "application/json")
 
     // Tell our AJAX request how to resolve
     xhttp.onreadystatechange = () => {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
-
-            // // Add the new data to the table
-            // addRowToTable(xhttp.response);
-
-            // Clear the input fields for another transaction
-            inputLocation.value = '';
-            inputPhoneNum.value = '';
-            inputHours.value = '';
-
             // TODO: Insert row into correct place
             // Fix for issues with ordering/rendering
-            location.reload();
+            location.reload()
         }
         else if (xhttp.readyState == 4 && xhttp.status != 200) {
             console.log("There was an error with the input.")
@@ -56,5 +47,5 @@ addRestaurantsForm.addEventListener("submit", function (e) {
     }
 
     // Send the request and wait for the response
-    xhttp.send(JSON.stringify(data));
+    xhttp.send(JSON.stringify(data))
 })

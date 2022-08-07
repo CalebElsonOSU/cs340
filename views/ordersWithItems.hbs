@@ -42,7 +42,6 @@
             <label for="input-orderID">orderID:</label>
             <select name="input-orderID" id="input-orderID" required>
                 <option value="">Select an orderID</option>
-                {{!--{{#each (unique (pluck data "orderID"))}}{{.}} --}}
                 {{#each orders}}
                     <option value="{{this.orderID}}">{{this.orderID}}</option>
                 {{/each}}
@@ -53,7 +52,6 @@
             <label for="input-ItemId">itemID:</label>
             <select name="input-itemID" id="input-itemID" onchange="addTotalAmount()" required>
                 <option value="">Select an item</option>
-                {{!--{{#each (unique (pluck data "orderID"))}}{{.}} --}}
                 {{#each items}}
                     <option value="{{this.itemID}}">{{this.name}}</option>
                 {{/each}}
@@ -62,7 +60,7 @@
 
         <div class="pure-control-group">
             <label for="input-itemQuantity">itemQuantity: </label>
-            <input type="number" name="input-itemQuantity" id="input-itemQuantity"
+            <input type="number" name="input-itemQuantity" id="input-itemQuantity" min="1"
                 onchange="addTotalAmount()" onkeyup="addTotalAmount()" required>
         </div>
 
@@ -82,10 +80,10 @@
 <p>&nbsp;</p>
 {{!-- Form to update a record to the table  --}}
 <h2>Update Item in Order </h2>
-<p>To update a specific item in an order select the correct orderWithItem
-    from the drop-down menu and enter the correct quantity and total amount</p>
+<p>To update a specific item in an order select the orderWithItem
+    from the drop-down menu and enter the updated quantity and total amount</p>
 
-<form class="pure-form pure-form-aligned" id="update-employees-form-ajax">
+<form class="pure-form pure-form-aligned" id="update-orderWithItems-form-ajax">
     <fieldset>
         <div class ="pure-control-group">
             <label for="update-orderWithItem">orderWithItem: </label>
@@ -122,6 +120,7 @@
 
 <script>
     // https://stackoverflow.com/questions/53637874/set-value-to-input-field-onchange-from-other-input-field
+    // Dynamically fills in item total price based on quantity and item chosen
     function addTotalAmount() {
         let item = document.getElementById('input-itemID').value
         let quantity = document.getElementById('input-itemQuantity').value
@@ -145,6 +144,7 @@
 
 <script>
     // https://stackoverflow.com/questions/53637874/set-value-to-input-field-onchange-from-other-input-field
+    // Dynamically fills in item total price based on quantity and item chosen
     function updateTotalAmount() {
         let itemValue = document.getElementById('update-orderWithItem').value
         let quantity = document.getElementById('update-itemQuantity').value

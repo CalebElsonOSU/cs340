@@ -75,6 +75,7 @@ CREATE OR REPLACE TABLE `Roles` (
   PRIMARY KEY (`roleID`)
 );
 
+-- Insert sample Patrons
 INSERT INTO Patrons (
   name,
   phoneNum,
@@ -97,6 +98,7 @@ VALUES
   "1208 S Brooklyn Ave"
 );
 
+-- Insert sample Orders
 INSERT INTO Orders (
   restaurantID,
   patronID,
@@ -119,6 +121,7 @@ VALUES
   "2022-04-22"
 );
 
+-- Insert sample values to the intersection table between Orders and Items
 INSERT INTO OrdersWithItems (
   orderID,
   itemID,
@@ -145,7 +148,7 @@ VALUES
   "38.10"
 );
 
-
+-- Insert sample Restaurants
 INSERT INTO Restaurants (
   location,
   phoneNum,
@@ -168,6 +171,7 @@ VALUES
   "10am-10pm"
 );
 
+-- Insert sample values to the intersection table between Restaurants and Employees
 INSERT INTO RestaurantsWithEmployees (
   employeeID,
   restaurantID
@@ -186,24 +190,26 @@ VALUES
   "1"
 );
 
+-- Insert sample values to the intersection table between Orders and Restaurants
 INSERT INTO OrdersWithRestaurants (
   orderID,
   restaurantID
 )
 VALUES 
 (
-  "0",
-  "0"
+  "3",
+  "2"
 ),
 (
   "1",
-  "0"
+  "3"
 ),
 (
   "2",
   "1"
 );
 
+-- Insert sample Employees, both roleID and pay are nullable
 INSERT INTO Employees (
     name,
     roleID,
@@ -226,6 +232,7 @@ VALUES
     NULL
 );
 
+-- Insert sample Items
 INSERT INTO Items (
   name,
   itemPrice
@@ -244,6 +251,7 @@ VALUES
   "17.90"
 );
 
+-- Insert sample Roles
 INSERT INTO Roles (
     roleName
 )

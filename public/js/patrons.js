@@ -4,17 +4,17 @@
     Add
 */
 // Get the objects we need to modify
-let addPatronsForm = document.getElementById('add-patrons-form-ajax');
+let addPatronsForm = document.getElementById('add-patrons-form-ajax')
 
 // Modify the objects we need
 addPatronsForm.addEventListener("submit", function (e) {
     
     // Prevent the form from submitting
-    e.preventDefault();
+    e.preventDefault()
 
     // Get form fields we need to get data from
-    let inputName = document.getElementById("input-name");
-    let inputPhoneNum = document.getElementById("input-phoneNum");
+    let inputName = document.getElementById("input-name")
+    let inputPhoneNum = document.getElementById("input-phoneNum")
     let inputAddress = document.getElementById("input-address")
 
     // Get the values from the form fields
@@ -30,25 +30,16 @@ addPatronsForm.addEventListener("submit", function (e) {
     }
     
     // Setup our AJAX request
-    var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "/add-patrons-ajax", true);
-    xhttp.setRequestHeader("Content-type", "application/json");
+    var xhttp = new XMLHttpRequest()
+    xhttp.open("POST", "/add-patrons-ajax", true)
+    xhttp.setRequestHeader("Content-type", "application/json")
 
     // Tell our AJAX request how to resolve
     xhttp.onreadystatechange = () => {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
-
-            // // Add the new data to the table
-            // addRowToTable(xhttp.response);
-
-            // Clear the input fields for another transaction
-            inputName.value = '';
-            inputPhoneNum.value = '';
-            inputAddress.value = '';
-
             // TODO: Insert row into correct place
             // Fix for issues with ordering/rendering
-            location.reload();
+            location.reload()
         }
         else if (xhttp.readyState == 4 && xhttp.status != 200) {
             console.log("There was an error with the input.")
@@ -56,5 +47,5 @@ addPatronsForm.addEventListener("submit", function (e) {
     }
 
     // Send the request and wait for the response
-    xhttp.send(JSON.stringify(data));
+    xhttp.send(JSON.stringify(data))
 })

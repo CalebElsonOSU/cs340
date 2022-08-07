@@ -30,7 +30,8 @@
             <td>{{this.employeeID}}</td>
             <td>{{this.name}}</td>
             <td>{{this.roleName}}</td>
-            <td>{{toFixed this.pay 4}}</td>
+            {{!-- If not null, display to 4 decimals. If null, display --}}
+            <td>{{#if this.pay }} {{toFixed this.pay 4}} {{else}} {{this.pay}} {{/if}}</td>
         </tr>
         {{/each}}
     </tbody>

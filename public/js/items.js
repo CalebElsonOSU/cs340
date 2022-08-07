@@ -34,14 +34,6 @@ addItemsForm.addEventListener("submit", function (e) {
     // Tell our AJAX request how to resolve
     xhttp.onreadystatechange = () => {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
-
-            // // Add the new data to the table
-            // addRowToTable(xhttp.response);
-
-            // Clear the input fields for another transaction
-            inputName.value = '';
-            inputItemPrice.value = '';
-
             // TODO: Insert row into correct place
             // Fix for issues with ordering/rendering
             location.reload();
