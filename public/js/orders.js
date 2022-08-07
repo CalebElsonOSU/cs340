@@ -1,3 +1,5 @@
+// Adapted from class demo project: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+
 /*
     Add
 */
@@ -59,3 +61,35 @@ addOrdersForm.addEventListener("submit", function (e) {
     // Send the request and wait for the response
     xhttp.send(JSON.stringify(data));
 })
+
+
+
+/*
+    Delete
+*/
+function deleteOrder(orderID) {
+    // Put our data we want to send in a javascript object
+    let data = {
+        orderID: orderID
+    };
+    
+    console.log(data, "data")
+    // Setup our AJAX request
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("DELETE", "/delete-orders-ajax", true);
+    xhttp.setRequestHeader("Content-type", "application/json");
+
+    // Tell our AJAX request how to resolve
+    xhttp.onreadystatechange = () => {
+        console.log(xhttp.readyState, "status", xhttp.status)
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
+            // TODO: Delete correct row
+            // Fix for issues with ordering/rendering
+            location.reload();
+        } else if (xhttp.readyState == 4 && xhttp.status != 204) {
+            console.log("There was an error with the input.")
+        }
+    }
+    // Send the request and wait for the response
+    xhttp.send(JSON.stringify(data));
+}

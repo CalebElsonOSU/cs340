@@ -1,3 +1,5 @@
+// Adapted from class demo project: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+
 /*
     Add
 */
@@ -69,7 +71,7 @@ addOrdersWithItemsForm.addEventListener("submit", function (e) {
 /*
     Delete
 */
-function deletePerson(orderID, itemID) {
+function deleteOrdersWithItems(orderID, itemID) {
     // Put our data we want to send in a javascript object
     let data = {
         orderID: orderID,
@@ -89,7 +91,8 @@ function deletePerson(orderID, itemID) {
             location.reload();
 
         }
-        else if (xhttp.readyState == 4 && xhttp.status != 204) {
+        else if (xhttp.readyState == 4 && xhttp.status != 200) {
+            console.log(xhttp.readyState, "status", xhttp.status)
             console.log("There was an error with the input.")
         }
     }
@@ -104,10 +107,10 @@ function deletePerson(orderID, itemID) {
     Update
 */
 // Get the objects we need to modify
-let updateorderWithItemsForm = document.getElementById('update-orderWithItems-form-ajax');
+let updateOrderWithItemsForm = document.getElementById('update-orderWithItems-form-ajax');
 
 // Modify the objects we need
-updateorderWithItemsForm.addEventListener("submit", function (e) {
+updateOrderWithItemsForm.addEventListener("submit", function (e) {
    
     // Prevent the form from submitting
     e.preventDefault();

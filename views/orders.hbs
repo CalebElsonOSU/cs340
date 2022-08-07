@@ -1,3 +1,5 @@
+{{!-- Adapted from class demo project: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
+
 <h1>Orders</h1>
 
 <div id="browse" style="display: block">
@@ -24,6 +26,7 @@
             {{/isnt}}
             {{/isnt}}
             {{/each}}
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -32,8 +35,12 @@
             <td>{{this.orderID}}</td>
             <td>{{this.restaurantName}}</td>
             <td>{{this.patronName}}</td>
-            <td>{{default this.totalAmount 0}}</td>
+            <td>{{toFixed (default this.totalAmount 0) 4}}</td>
             <td>{{this.orderDate}}</td>
+            <div class="pure-controls">
+                <td><button onclick="deleteOrder({{this.orderID}})"
+                    class="pure-button pure-button-primary">Delete</button></td>
+            </div>
         </tr>
         {{/each}}
     </tbody>

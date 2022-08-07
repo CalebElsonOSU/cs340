@@ -1,3 +1,5 @@
+{{!-- Adapted from class demo project: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
+
 <h1>Employees</h1>
 
 <div id="browse" style="display: block">
@@ -28,7 +30,7 @@
             <td>{{this.employeeID}}</td>
             <td>{{this.name}}</td>
             <td>{{this.roleName}}</td>
-            <td>{{this.pay}}</td>
+            <td>{{toFixed this.pay 4}}</td>
         </tr>
         {{/each}}
     </tbody>
@@ -39,6 +41,7 @@
 {{!-- Form to add a record to the table  --}}
 <h2>Add Employee</h2>
 <p>To add a new employee, please enter their information below and click 'Submit'!</p>
+<p>Note that both role and pay are optional</p>
 <form class="pure-form pure-form-aligned" id="add-employees-form-ajax">
     <fieldset>
         <div class="pure-control-group">
@@ -47,7 +50,7 @@
         </div>
 
           <div class="pure-control-group">
-            <label for="input-roleID">roleID:</label>
+            <label for="input-roleID">role:</label>
             <select name="input-roleID" id="input-roleID">
                 <option value=''>Select a role</option>
                 {{#each roles}}
@@ -59,6 +62,44 @@
         <div class="pure-control-group">
             <label for="input-pay">pay: </label>
             <input type="number" min="0.00" step="0.01" name="input-pay" id="input-pay">
+        </div>
+
+        <div class="pure-controls">
+            <button type="submit" class="pure-button pure-button-primary">Submit</button>
+        </div>
+    </fieldset>
+</form>
+
+<p>&nbsp;</p>
+{{!-- Form to update a record to the table  --}}
+<h2>Update Employee </h2>
+<p>Select an employee from the drop down. Note that both pay and roleID are optional</p>
+
+<form class="pure-form pure-form-aligned" id="update-employees-form-ajax">
+    <fieldset>
+          <div class="pure-control-group">
+            <label for="update-employeeID">name:</label>
+            <select name="update-employeeID" id="update-employeeID" required>
+                <option value=''>Select an employee</option>
+                {{#each employees}}
+                    <option value="{{this.employeeID}}">{{this.name}}</option>
+                {{/each}}
+            </select>
+        </div>
+
+          <div class="pure-control-group">
+            <label for="update-roleID">role:</label>
+            <select name="update-roleID" id="update-roleID">
+                <option value=''>Select a role</option>
+                {{#each roles}}
+                    <option value="{{this.roleID}}">{{this.roleName}}</option>
+                {{/each}}
+            </select>
+        </div>
+
+        <div class="pure-control-group">
+            <label for="update-pay">pay: </label>
+            <input type="number" min="0.00" step="0.01" name="update-pay" id="update-pay">
         </div>
 
         <div class="pure-controls">

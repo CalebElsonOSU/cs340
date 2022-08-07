@@ -1,0 +1,66 @@
+{{!-- Adapted from class demo project: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
+
+<h1>Restaurants with Employees</h1>
+
+<table class="pure-table pure-table-bordered" id="restaurantsWithEmployees-table">
+    <thead>
+        <tr>
+            {{#each restaurantsWithEmployees.[0]}}
+            {{#isnt @key 'restaurantID'}}
+            {{#isnt @key 'employeeID'}}
+            <th>
+                {{@key}}
+            </th>
+            {{/isnt}}
+            {{/isnt}}
+            {{/each}}
+        </tr>
+    </thead>
+    <tbody>
+        {{#each restaurantsWithEmployees}}
+        <tr>
+            <td>{{this.restaurantName}}</td>
+            <td>{{this.employeeName}}</td>
+            <td>{{this.roleName}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+<p>&nbsp;</p>
+{{!-- Form to add a record to the table  --}}
+<h2>Add Employee to Restaurant</h2>
+<p>To add an employee to a restaurant, select the information below and click 'Submit'!</p>
+<p>Combinations of employees and restaurants must be unique, duplicates will not be added</p>
+<form class="pure-form pure-form-aligned" id="add-restaurantsWithEmployees-form-ajax">
+    <fieldset>
+        <div class="pure-control-group">
+            <label for="input-restaurantID">restaurantName:</label>
+            <select name="input-restaurantID" id="input-restaurantID" required>
+                <option value="">Select a restaurant</option>
+                {{#each restaurants}}
+                    <option value="{{this.restaurantID}}">{{this.location}}</option>
+                {{/each}}
+            </select>
+        </div>
+
+        <div class="pure-control-group">
+            <label for="input-employeeID">employeeName:</label>
+            <select name="input-employeeID" id="input-employeeID" required>
+                <option value="">Select an employee</option>
+                {{#each employees}}
+                    <option value="{{this.employeeID}}">{{this.name}}, {{this.roleName}}</option>
+                {{/each}}
+            </select>
+        </div>
+
+        <div class="pure-controls">
+            <button type="submit" class="pure-button pure-button-primary">Submit</button>
+        </div>
+    </fieldset>
+</form>
+
+
+{{!-- Scripts --}}
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="./js/restaurantsWithEmployees.js"></script>

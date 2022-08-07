@@ -1,4 +1,5 @@
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+{{!-- Adapted from class demo project: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
+
 <h1>Orders with Items</h1>
 
 <table class="pure-table pure-table-bordered" id="ordersWithItems-table">
@@ -22,7 +23,7 @@
             <td>{{this.itemQuantity}}</td>
             <td>{{toFixed this.itemTotalAmount 4}}</td>
             <div class="pure-controls">
-                <td><button onclick="deletePerson({{this.orderID}}, {{this.itemID}})"
+                <td><button onclick="deleteOrdersWithItems({{this.orderID}}, {{this.itemID}})"
                     class="pure-button pure-button-primary">Delete</button></td>
             </div>
         </tr>
@@ -49,9 +50,10 @@
         </div>
 
         <div class="pure-control-group">
-            <label for="inpute-ItemId">itemID:</label>
+            <label for="input-ItemId">itemID:</label>
             <select name="input-itemID" id="input-itemID" onchange="addTotalAmount()" required>
                 <option value="">Select an item</option>
+                {{!--{{#each (unique (pluck data "orderID"))}}{{.}} --}}
                 {{#each items}}
                     <option value="{{this.itemID}}">{{this.name}}</option>
                 {{/each}}
@@ -79,11 +81,11 @@
 
 <p>&nbsp;</p>
 {{!-- Form to update a record to the table  --}}
-<h2>Updating Item in Order </h2>
+<h2>Update Item in Order </h2>
 <p>To update a specific item in an order select the correct orderWithItem
     from the drop-down menu and enter the correct quantity and total amount</p>
 
-<form class="pure-form pure-form-aligned" id="update-orderWithItems-form-ajax">
+<form class="pure-form pure-form-aligned" id="update-employees-form-ajax">
     <fieldset>
         <div class ="pure-control-group">
             <label for="update-orderWithItem">orderWithItem: </label>

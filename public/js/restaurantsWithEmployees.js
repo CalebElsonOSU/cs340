@@ -4,31 +4,31 @@
     Add
 */
 // Get the objects we need to modify
-let addItemsForm = document.getElementById('add-items-form-ajax');
+let addRestaurantsWithEmployeesForm = document.getElementById('add-restaurantsWithEmployees-form-ajax');
 
 // Modify the objects we need
-addItemsForm.addEventListener("submit", function (e) {
+addRestaurantsWithEmployeesForm.addEventListener("submit", function (e) {
     
     // Prevent the form from submitting
     e.preventDefault();
 
     // Get form fields we need to get data from
-    let inputName = document.getElementById("input-name");
-    let inputItemPrice = document.getElementById("input-itemPrice");
+    let inputRestaurantID = document.getElementById("input-restaurantID")
+    let inputEmployeeID = document.getElementById("input-employeeID")
 
     // Get the values from the form fields
-    let inputNameValue = inputName.value;
-    let inputItemPriceValue = inputItemPrice.value;
+    let restaurantIDValue = inputRestaurantID.value
+    let employeeIDValue = inputEmployeeID.value;
 
     // Put our data we want to send in a javascript object
     let data = {
-        name: inputNameValue,
-        itemPrice: inputItemPriceValue
+        restaurantID: restaurantIDValue,
+        employeeID: employeeIDValue
     }
     
     // Setup our AJAX request
     var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "/add-items-ajax", true);
+    xhttp.open("POST", "/add-restaurantsWithEmployees-ajax", true);
     xhttp.setRequestHeader("Content-type", "application/json");
 
     // Tell our AJAX request how to resolve
@@ -39,8 +39,8 @@ addItemsForm.addEventListener("submit", function (e) {
             // addRowToTable(xhttp.response);
 
             // Clear the input fields for another transaction
-            inputName.value = '';
-            inputItemPrice.value = '';
+            inputRestaurantID.value = '';
+            inputEmployeeID.value = '';
 
             // TODO: Insert row into correct place
             // Fix for issues with ordering/rendering

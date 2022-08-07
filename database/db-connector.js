@@ -1,4 +1,5 @@
-// ./database/db-connector.js
+// Adapted from class demo project: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+
 
 // Get an instance of mysql we can use in the app
 var mysql = require('mysql')
